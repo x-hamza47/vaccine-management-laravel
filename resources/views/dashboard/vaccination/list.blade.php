@@ -3,7 +3,7 @@
 @section('content')
 <div class="card">
 
-    <h5 class="card-header">Upcoming Vaccinations</h5>
+    <h5 class="card-header">Vaccinations Report</h5>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
@@ -61,6 +61,8 @@
 @push('scripts')
 <script>
     $(document).ready(function(){
+
+        // Status Change
         $('.status-toggle').change(function () { 
            let scheduleId =  $(this).data('id') ;
            let status =  $(this).is(':checked') ? 'completed' : 'pending' ;
@@ -77,7 +79,7 @@
             },
             success: function (response) {
                 if(response['status']) {
-                    window.location.href = "{{ route('vaccination.index') }}";                    
+                    window.location.reload();                    
                 } 
             }
            });

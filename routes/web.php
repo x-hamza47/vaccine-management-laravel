@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ChildrenController;
+use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccinationScheduleController;
+use App\Http\Controllers\VaccineController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,4 +31,16 @@ Route::get('admin/delete/{id}',[ChildrenController::class, 'destroy'])->name('ch
 
 Route::get('admin/vaccinations', [VaccinationScheduleController::class, 'index'])->name('vaccination.index');
 Route::post('admin/vaccinations/update/{id}', [VaccinationScheduleController::class, 'updateStatus'])->name('vaccination.updateStatus');
+
+// ! Vaccine Controller
+
+Route::get('admin/vaccines',VaccineController::class)->name('vaccine.index');
+Route::post('admin/vaccines/{id}/update',[VaccineController::class, 'update'])->name('vaccine.update');
+
+
+// ! Hospital Controller
+
+Route::get('admin/hospitals',[HospitalController::class, 'index'])->name('hospital.index');
+Route::get('admin/hospitals/edit/{id}',[HospitalController::class, 'edit'])->name('hospital.edit')->whereNumber('id');
+Route::get('admin/hospitals/delete/{id}',[HospitalController::class, 'destroy'])->name('hospital.delete')->whereNumber('id');
 
