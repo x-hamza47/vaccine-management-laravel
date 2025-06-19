@@ -7,6 +7,7 @@
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h5 class="mb-0">Edit Info</h5>
+                <a href="{{ route('child.index') }}" class="btn btn-primary text-white">Go back</a>
                 {{-- <small class="text-muted float-end">Default label</small> --}}
             </div>
             <div class="card-body">
@@ -19,11 +20,17 @@
                             <input type="text" class="form-control" id="basic-default-name" placeholder="John Doe" name="name" value="{{ $child->name }}" />
                         </div>
                     </div>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="dob">Date of Birth</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="dob" placeholder="2025-02-12"
                                 name="dob" value="{{ $child->dob }}" />
+                                @error('dob')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     {{-- ? gender --}}

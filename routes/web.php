@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\UserApprovalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccinationScheduleController;
 use App\Http\Controllers\VaccineController;
@@ -41,6 +42,14 @@ Route::post('admin/vaccines/{id}/update',[VaccineController::class, 'update'])->
 // ! Hospital Controller
 
 Route::get('admin/hospitals',[HospitalController::class, 'index'])->name('hospital.index');
+Route::get('admin/hospitals/create',[HospitalController::class, 'create'])->name('hospital.create');
+Route::post('admin/hospitals/store',[HospitalController::class, 'store'])->name('hospital.store');
 Route::get('admin/hospitals/edit/{id}',[HospitalController::class, 'edit'])->name('hospital.edit')->whereNumber('id');
 Route::get('admin/hospitals/delete/{id}',[HospitalController::class, 'destroy'])->name('hospital.delete')->whereNumber('id');
+
+// ! User Approval Controller
+
+Route::get('admin/user-approvals',[UserApprovalController::class, 'index'])->name('user.approval.index');
+Route::patch('admin/user-approvals/{user}/approve',[UserApprovalController::class, 'approve'])->name('user.approval.approve');
+Route::delete('admin/user-approvals/{user}/reject',[UserApprovalController::class, 'reject'])->name('user.approval.reject');
 
