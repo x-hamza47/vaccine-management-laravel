@@ -95,11 +95,6 @@
             </li>
             <li class="menu-item">
               <a href="{{ route('vaccination.index') }}" class="menu-link">
-                <div data-i18n="Date of Vaccinations">Date of Vaccinations</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="" class="menu-link">
                 <div data-i18n="Vaccination Reports">Vaccination Reports</div>
               </a>
             </li>
@@ -112,7 +107,7 @@
         </li>
         {{-- ! Vaccines --}}
         <li class="menu-item">
-          <a href="" class="menu-link">
+          <a href="{{ route('vaccine.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-injection"></i>
             <div data-i18n="Basic">Vaccines</div>
           </a>
@@ -144,7 +139,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="" class="menu-link">
+              <a href="{{ route('hospital.index') }}" class="menu-link">
                 <div data-i18n="List of Hospitals">List of Hospitals</div>
               </a>
             </li>

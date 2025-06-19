@@ -21,7 +21,7 @@ class VaccinationScheduleController extends Controller
             'status' => 'required|in:pending,completed',
         ]);
 
-        $schedule = VaccinationSchedule::find($id);
+        $schedule = VaccinationSchedule::findOrFail($id);
         $schedule->update([
             'status' => $request->status,
         ]);

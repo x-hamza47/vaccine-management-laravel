@@ -13,7 +13,20 @@ class VaccineSeeder extends Seeder
      */
     public function run(): void
     {
-        $vaccines = ['Polio', 'BCG', 'Hepatitis B', 'MMR'];
+        // $vaccines = ['Polio', 'BCG', 'Hepatitis B', 'MMR'];
+        $vaccines = [
+            'DTP Vaccine',
+            'Hib Vaccine',
+            'Rotavirus Vaccine',
+            'Pneumococcal Vaccine',
+            'Chickenpox Vaccine',
+            'Hepatitis A Vaccine',
+            'Typhoid Vaccine',
+            'Influenza Vaccine',
+            'COVID-19 Vaccine',
+            'HPV Vaccine',
+            'JE Vaccine'
+        ];
 
         foreach($vaccines as $vaccine){
             Vaccine::create(['name' => $vaccine]);
