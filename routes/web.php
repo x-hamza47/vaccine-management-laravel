@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VaccinationScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,4 +23,10 @@ Route::post('admin/register',[UserController::class, 'store'])->name('user.regis
 Route::get('admin/children',[ChildrenController::class, 'index'])->name('child.index');
 Route::get('admin/edit/{id}',[ChildrenController::class, 'edit'])->name('child.edit');
 Route::put('admin/update/{id}',[ChildrenController::class, 'update'])->name('child.update');
+Route::get('admin/delete/{id}',[ChildrenController::class, 'destroy'])->name('child.delete');
+
+// ! Vaccination Schedule Controller
+
+Route::get('admin/vaccinations', [VaccinationScheduleController::class, 'index'])->name('vaccination.index');
+Route::post('admin/vaccinations/update/{id}', [VaccinationScheduleController::class, 'updateStatus'])->name('vaccination.updateStatus');
 

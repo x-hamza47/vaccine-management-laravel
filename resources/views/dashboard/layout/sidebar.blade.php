@@ -94,13 +94,18 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="" class="menu-link">
-                <div data-i18n="Vaccination Dates">Vaccination Dates</div>
+              <a href="{{ route('vaccination.index') }}" class="menu-link">
+                <div data-i18n="Date of Vaccinations">Date of Vaccinations</div>
               </a>
             </li>
             <li class="menu-item">
               <a href="" class="menu-link">
                 <div data-i18n="Vaccination Reports">Vaccination Reports</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="" class="menu-link">
+                <div data-i18n="Pending Requests">Pending Requests</div>
               </a>
             </li>
           </ul>
@@ -113,12 +118,12 @@
           </a>
         </li>
         {{-- ! parent request --}}
-        <li class="menu-item">
+        {{-- <li class="menu-item">
           <a href="" class="menu-link">
             <i class="menu-icon tf-icons bx bx-user-check"></i>
             <div data-i18n="Parent Request">Parent Request</div>
           </a>
-        </li>
+        </li> --}}
         {{-- ! bookings --}}
         <li class="menu-item">
           <a href="" class="menu-link">

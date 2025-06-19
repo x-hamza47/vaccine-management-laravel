@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class ChildrenController extends Controller
 {
     public function index(){
-       $childs =  Children::with(['user','vaccinationSchedules:id,child_id,status'])
-       ->latest()
+       $childs =  Children::with(['parent','vaccinationSchedules:id,child_id,status'])
+       ->latest('created_at')
        ->get();
        return view('dashboard.children.list',compact('childs'));
     }
@@ -42,5 +42,12 @@ class ChildrenController extends Controller
             ]);
         }
         return redirect()->route('child.index')->with('success', 'Child updated successfully.');
+    }
+    
+    public function destroy(Int $id){
+        $child = Children::findOrFail($id);
+        $child->delete();
+        return redirect()->route('child.index')->with('success', 'Child Deleted successfully.');
+
     }
 }
