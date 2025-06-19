@@ -5,7 +5,7 @@
 
     <h5 class="card-header">All Child List</h5>
     <div class="table-responsive text-nowrap">
-      <table class="table table-hover table-dark">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th>Child Name</th>
@@ -25,36 +25,42 @@
                     <td><strong>{{ $child->name }}</strong></td>
                     <td>{{ $child->dob }}</td>
                     <td>{{ $child->gender }}</td>
-                    <td>{{ $child->user->name }}</td>
+                    <td>{{ $child->parent->name }}</td>
                     <td>
                     @php
                         $status = $child->vaccinationSchedules->status;
                     @endphp
                 
                     @if ($status == 'completed')
-                        <span class="badge bg-label-success me-1">Completed</span>
+                        <span class="badge bg-success rounded-pill me-1">Completed</span>
                     @elseif ($status == 'pending')
-                        <span class="badge bg-label-warning me-1">Pending</span>
+                        <span class="badge bg-warning rounded-pill me-1">Pending</span>
                     @else
-                        <span class="badge bg-label-secondary me-1">No Status</span>
+                        <span class="badge bg-secondary rounded-pill me-1">No Status</span>
                     @endif
     
                     </td>
                     <td>{{ $child->created_at->format('F j, Y') }}</td>
-                    <td>
-                        <div class="dropdown">
-                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('child.edit', $child->id) }}"
-                            ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                            >
-                            <a class="dropdown-item" href="javascript:void(0);"
-                            ><i class="bx bx-trash me-1"></i> Delete</a
-                            >
-                        </div>
-                        </div>
+                    <td class="d-flex gap-2">                        
+                        <a class="btn-primary btn-sm btn fs-4 text-white d-flex align-items-center justify-content-center" 
+                        href="{{ route('child.edit', $child->id) }}"
+                        data-bs-toggle="tooltip"
+                        data-bs-offset="0,4"
+                        data-bs-placement="top"
+                        data-bs-html="true"
+                        title="<i class='bx bx-edit' ></i> <span>Edit Child</span>"
+                        >
+                            <i class="bx bx-edit-alt"></i> 
+                        </a>
+                        <a class="btn btn-sm btn-danger fs-4 text-white d-flex align-items-center justify-content-center" 
+                        href="{{ route('child.delete', $child->id) }}"
+                        data-bs-toggle="tooltip"
+                        data-bs-offset="0,4"
+                        data-bs-placement="top"
+                        data-bs-html="true"
+                        title="<i class='bx bx-trash' ></i> <span>Delete Child</span>">
+                            <i class="bx bx-trash"></i> 
+                        </a>
                     </td>
                     </tr>
                 @endforeach
