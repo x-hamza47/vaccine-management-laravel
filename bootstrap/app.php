@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckUserApproval;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\ValidUser;
 use Illuminate\Foundation\Application;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'IsUserValid' => ValidUser::class,
             'IsAuthenticated' => RedirectIfAuthenticated::class,
+            'IsApproved' => CheckUserApproval::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

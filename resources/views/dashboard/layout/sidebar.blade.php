@@ -75,25 +75,25 @@
       {{-- Info: Admin --}}
       @can('admin-view')
         {{-- ! Dashboard --}}
-        <li class="menu-item active">
+        <li class="menu-item {{ Route::is('show.dashboard') ? 'active' : '' }}">
           <a href="{{ route('show.dashboard') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Dashboard</div>
           </a>
         </li>
         {{-- ! Children --}}
-        <li class="menu-item">
+        <li class="menu-item {{ Route::is('child.index','vaccination.index') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-child"></i>
             <div data-i18n="Childrens">Childrens</div>
           </a>
           <ul class="menu-sub">
-            <li class="menu-item">
+            <li class="menu-item {{ Route::is('child.index') ? 'active' : '' }}">
               <a href="{{ route('child.index') }}" class="menu-link">
                 <div data-i18n="All Child Details">All Child Details</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Route::is('vaccination.index') ? 'active' : '' }}">
               <a href="{{ route('vaccination.index') }}" class="menu-link">
                 <div data-i18n="Vaccination Reports">Vaccination Reports</div>
               </a>
@@ -106,19 +106,12 @@
           </ul>
         </li>
         {{-- ! Vaccines --}}
-        <li class="menu-item">
+        <li class="menu-item {{ Route::is('vaccine.index') ? 'active' : '' }}">
           <a href="{{ route('vaccine.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-injection"></i>
             <div data-i18n="Basic">Vaccines</div>
           </a>
         </li>
-        {{-- ! parent request --}}
-        {{-- <li class="menu-item">
-          <a href="" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-user-check"></i>
-            <div data-i18n="Parent Request">Parent Request</div>
-          </a>
-        </li> --}}
         {{-- ! bookings --}}
         <li class="menu-item">
           <a href="" class="menu-link">
@@ -127,18 +120,18 @@
           </a>
         </li>
         {{-- ! Hospital --}}
-        <li class="menu-item">
+        <li class="menu-item {{ Route::is('hospital.*') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-clinic"></i>
             <div data-i18n="Hospitals">Hospitals</div>
           </a>
           <ul class="menu-sub">
-            <li class="menu-item">
-              <a href="" class="menu-link">
+            <li class="menu-item {{ Route::is('hospital.create') ? 'active' : '' }}">
+              <a href="{{ route('hospital.create') }}" class="menu-link">
                 <div data-i18n="Add Hospital">Add Hospital</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item {{ Route::is('hospital.index') ? 'active' : '' }}">
               <a href="{{ route('hospital.index') }}" class="menu-link">
                 <div data-i18n="List of Hospitals">List of Hospitals</div>
               </a>
@@ -146,9 +139,9 @@
           </ul>
         </li>
         {{-- ! approvals --}}
-        <li class="menu-item">
-          <a href="" class="menu-link">
-            <i class="menu-icon tf-icons 	bx bx-group"></i>
+        <li class="menu-item {{ Route::is('user.approval.index') ? 'active' : '' }}">
+          <a href="{{ route('user.approval.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-group"></i>
             <div data-i18n="User Approvals">User Approvals</div>
           </a>
         </li>
