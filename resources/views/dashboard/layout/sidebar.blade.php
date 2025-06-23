@@ -72,17 +72,17 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
+      {{-- ! Dashboard --}}
+      <li class="menu-item {{ Route::is('show.dashboard') ? 'active' : '' }}">
+        <a href="{{ route('show.dashboard') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-home-circle"></i>
+          <div data-i18n="Analytics">Dashboard</div>
+        </a>
+      </li>
       {{-- Info: Admin --}}
       @can('admin-view')
-        {{-- ! Dashboard --}}
-        <li class="menu-item {{ Route::is('show.dashboard') ? 'active' : '' }}">
-          <a href="{{ route('show.dashboard') }}" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Dashboard</div>
-          </a>
-        </li>
         {{-- ! Children --}}
-        <li class="menu-item {{ Route::is('child.index','vaccination.index') ? 'open active' : '' }}">
+        <li class="menu-item {{ Route::is('child.*','vaccination.index') ? 'open active' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-child"></i>
             <div data-i18n="Childrens">Childrens</div>
@@ -98,8 +98,8 @@
                 <div data-i18n="Vaccination Reports">Vaccination Reports</div>
               </a>
             </li>
-            <li class="menu-item">
-              <a href="" class="menu-link">
+            <li class="menu-item {{ Route::is('child.pending.requests') ? 'active' : '' }}">
+              <a href="{{ route('child.pending.requests') }}" class="menu-link">
                 <div data-i18n="Pending Requests">Pending Requests</div>
               </a>
             </li>
@@ -113,8 +113,8 @@
           </a>
         </li>
         {{-- ! bookings --}}
-        <li class="menu-item">
-          <a href="" class="menu-link">
+        <li class="menu-item {{ Route::is('bookings.index') ? 'active' : '' }}">
+          <a href="{{ route('bookings.index') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-calendar-check"></i>
             <div data-i18n="Bookings">Bookings</div>
           </a>
@@ -150,13 +150,6 @@
 
       {{-- Info: Hospital --}}
       @can('hospital-view')
-        {{-- ! Dashboard --}}
-        <li class="menu-item active">
-          <a href="" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Dashboard</div>
-          </a>
-        </li>
 
         {{-- ! Vaccines --}}
         <li class="menu-item">
@@ -166,8 +159,8 @@
           </a>
         </li>
         {{-- ! appointments --}}
-        <li class="menu-item">
-          <a href="" class="menu-link">
+        <li class="menu-item {{ Route::is('hospital.appointments') ? 'active' : '' }}">
+          <a href="{{ route('hospital.appointments') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-calendar-check"></i>
             <div data-i18n="update">View Appointments</div>
           </a>

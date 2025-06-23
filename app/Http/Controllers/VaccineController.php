@@ -10,7 +10,7 @@ class VaccineController extends Controller
     public function __invoke()
     {
         $vaccines = Vaccine::latest()->get();
-        return view('dashboard.vaccine.list',compact('vaccines'));
+        return view('dashboard.admin.vaccine.list',compact('vaccines'));
     }
 
     public function update(Request $request, $id){

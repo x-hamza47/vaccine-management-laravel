@@ -3,58 +3,44 @@
 @section('content')
 <div class="card">
 
-    <h5 class="card-header">All Hospitals List</h5>
+    <h5 class="card-header">Appointments</h5>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>Hospital Name</th>
-            <th>Address</th>
-            <th>Location</th>
-            <th>Registered Email</th>
-            <th>Actions</th>
+            <th>Child Name</th>
+            <th>Vaccine</th>
+            <th>Scheduled Date</th>
+            <th>Vaccination Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
 
-            @if ($hospitals->isNotEmpty())
-                @foreach ($hospitals as $hospital) 
-                    <tr>
-                    <td><strong>{{ $hospital->hospital_name }}</strong></td>
-                    <td
-                        data-bs-toggle="tooltip"
-                        data-bs-offset="0,4"
-                        data-bs-placement="top"
-                        data-bs-html="true"
-                        title="<span>{{ $hospital->address }}</span>">
-                        {{ $hospital->short_address }}
+                @forelse ($appointments as $appointment)
+                <tr>
+                    <td><strong>{{ $appointment->child->name }}</strong></td>
+                    <td>{{ $appointment->vaccine->name }}</td>
+                    <td>{{ $appointment->FormattedDate }}</td>
+                    <td>
+                        <span class="badge bg-{{ $appointment->status == 'completed' ? 'success' : 'warning'}} rounded-pill me-1">
+                            {{ $appointment->status }}
+                        </span>
                     </td>
-                    <td>{{ $hospital->location }}</td>
-                    <td>{{ $hospital->user->email }}</td>
+
                     <td class="d-flex gap-2">                        
-                        <a class="btn-primary btn-sm btn fs-4 text-white d-flex align-items-center justify-content-center" 
-                        href="{{ route('hospital.edit', $hospital->id) }}"
-                        data-bs-toggle="tooltip"
-                        data-bs-offset="0,4"
-                        data-bs-placement="top"
-                        data-bs-html="true"
-                        title="<i class='bx bx-edit' ></i> <span>Edit</span>"
-                        >
-                            <i class="bx bx-edit-alt"></i> 
-                        </a>
-                        <a class="btn btn-sm btn-danger fs-4 text-white d-flex align-items-center justify-content-center" 
-                        href="{{ route('hospital.delete', $hospital->id) }}"
-                        data-bs-toggle="tooltip"
-                        data-bs-offset="0,4"
-                        data-bs-placement="top"
-                        data-bs-html="true"
-                        title="<i class='bx bx-trash' ></i> <span>Delete</span>">
-                            <i class="bx bx-trash"></i> 
-                        </a>
+                        <div class="form-check form-switch mb-2 ">
+                            <input class="form-check-input status-toggle" type="checkbox" id="flexSwitchCheckDefault" @checked($appointment->status == 'completed') data-id="{{ $appointment->id }}"/>
+                        </div>
                     </td>
                     </tr>
-                @endforeach
-            @endif
+                @empty
+                <tr>
+                    <td colspan="12" class="text-center">No scheduled vaccinations available.</td>
+                </tr>
+                @endforelse
+                    
+
 
         </tbody>
       </table>
@@ -62,3 +48,36 @@
   </div>
     
 @endsection
+
+{{-- @push('scripts')
+<script>
+    $(document).ready(function(){
+
+        // Status Change
+        $('.status-toggle').change(function () { 
+           let scheduleId =  $(this).data('id') ;
+           let status =  $(this).is(':checked') ? 'completed' : 'pending' ;
+
+           let url = '{{ route("vaccination.updateStatus","ID") }}';
+           var newUrl = url.replace("ID",scheduleId);
+
+           $.ajax({
+            url: newUrl,
+            type: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                status : status,
+            },
+            success: function (response) {
+                if(response['status']) {
+                    window.location.reload();                    
+                } 
+            }
+           });
+            
+        });
+
+    })
+</script>
+    
+@endpush --}}

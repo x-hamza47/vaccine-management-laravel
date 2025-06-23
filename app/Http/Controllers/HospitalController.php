@@ -5,21 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
+use App\Models\VaccinationSchedule;
+use Illuminate\Support\Facades\Auth;
 
 class HospitalController extends Controller
 {
     public function index(){
         $hospitals = Hospital::with('user:id,email')->latest()->get();
-        return view('dashboard.hospital.list', compact('hospitals'));
+        return view('dashboard.admin.hospital.list', compact('hospitals'));
     }
 
     public function edit(Int $id){
         $hospital = Hospital::findOrFail($id);
-        return view('dashboard.hospital.edit', compact('hospital'));
+        return view('dashboard.admin.hospital.edit', compact('hospital'));
     }
 
     public function create(){
-        return view('dashboard.hospital.create');
+        return view('dashboard.admin.hospital.create');
     }
 
     public function store(Request $request){
@@ -53,5 +55,23 @@ class HospitalController extends Controller
         $hospital->delete();
 
         return redirect()->route('hospital.index')->with('success', 'Hospital Deleted successfully.');
+    }
+
+    // !Hospital Dashboard
+    public function appointments(){
+        
+        $hospitalId = Auth::user()->hospital->id;
+
+        $appointments = VaccinationSchedule::with([
+            'child:id,name', 
+            'vaccine:id,name'])
+            ->where('hospital_id', $hospitalId)
+            ->latest('date')
+            ->get();
+
+            return view('dashboard.hospital.list', compact('appointments'));
+        // return $hospitalId;
+
+
     }
 }

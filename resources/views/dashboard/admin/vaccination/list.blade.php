@@ -24,9 +24,9 @@
                     <tr>
                     <td><strong>{{ $schedule->child->name }}</strong></td>
                     <td>{{ $schedule->child->parent->name }}</td>
-                    <td>{{ $schedule->hospital->hospital_name }}</td>
                     <td>{{ $schedule->vaccine->name }}</td>
                     <td>{{ $schedule->FormattedDate }}</td>
+                    <td>{{ $schedule->hospital->hospital_name }}</td>
                     <td>
                     @php
                         $status = $schedule->status;

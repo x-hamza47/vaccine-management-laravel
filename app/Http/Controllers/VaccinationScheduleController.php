@@ -13,7 +13,7 @@ class VaccinationScheduleController extends Controller
         ->whereDate('date', '>=', now())
         ->latest()
         ->get();
-        return view('dashboard.vaccination.list', compact('data'));
+        return view('dashboard.admin.vaccination.list', compact('data'));
     }
 
     public function updateStatus(Request $request,  $id){
@@ -27,5 +27,16 @@ class VaccinationScheduleController extends Controller
         ]);
 
         return response()->json(['status' => true, 'message' => 'Status updated successfully.']);
+    }
+
+    public function bookings(){
+        $data = VaccinationSchedule::with([
+            'child:id,name,user_id',
+            'child.parent:id,name',
+            'vaccine:id,name',
+            'hospital:id,hospital_name'])
+            ->latest('date')
+            ->get();
+        return view('dashboard.admin.bookings.list', compact('data'));
     }
 }

@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="card">
-
     <h5 class="card-header">All Child List</h5>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
@@ -24,9 +23,33 @@
                     <tr>
                     <td><strong>{{ $child->name }}</strong></td>
                     <td>{{ $child->dob }}</td>
-                    <td>{{ $child->gender }}</td>
+                    <td>{{ ucfirst($child->gender) }}</td>
                     <td>{{ $child->parent->name }}</td>
-                    <td>
+                    <td >
+                     {{-- @php
+                        $pendingCount = $child->vaccinationSchedules->where('status', 'pending')->count();
+                        $completedCount = $child->vaccinationSchedules->where('status', 'completed')->count();
+                    @endphp
+                    
+                    @if ($pendingCount > 0)
+                        <span class="badge bg-warning rounded-pill me-1 position-relative">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                               {{ $pendingCount }}
+                            </span>
+                            Pending
+                        </span> 
+                    @endif
+                    @if ($completedCount > 0)
+                        <span class="badge bg-success rounded-pill me-1 position-relative">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {{ $completedCount }}
+                            </span>
+                             Completed
+                        </span>
+                    @endif
+                    @if ($pendingCount == 0 && $completedCount == 0)
+                        <span class="badge bg-secondary rounded-pill me-1">No Status</span>
+                    @endif --}}
                     @php
                         $status = $child->vaccinationSchedules->status;
                     @endphp

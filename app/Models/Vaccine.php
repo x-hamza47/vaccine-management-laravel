@@ -11,4 +11,9 @@ class Vaccine extends Model
     public function vaccine_schedules(){
         return $this->hasMany(VaccinationSchedule::class);
     }
+
+    public function vaccineRequests()
+    {
+        return $this->hasMany(VaccineRequest::class);
+    }
 }
