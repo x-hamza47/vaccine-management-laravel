@@ -9,7 +9,7 @@ class UserApprovalController extends Controller
 {
     public function index(){
         $users = User::where('is_approved',false)->latest()->get();
-        return view('dashboard.user_approvals.list', compact('users'));
+        return view('dashboard.admin.user_approvals.list', compact('users'));
     }
 
     public function approve(User $user){

@@ -28,7 +28,7 @@
                         @csrf
                         @method('PATCH')
                     <button type="submit"                     
-                        class="btn-success btn-sm btn fs-4 text-white d-flex align-items-center justify-content-center" 
+                        class="btn-primary btn-sm btn fs-4 text-white d-flex align-items-center justify-content-center" 
                         data-bs-toggle="tooltip"
                         data-bs-offset="0,4"
                         data-bs-placement="top"

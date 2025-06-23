@@ -22,6 +22,10 @@ class Children extends Model
         return $this->hasOne(VaccinationSchedule::class,'child_id');
     }
 
+    public function vaccineRequests(){
+        return $this->hasMany(VaccineRequest::class);
+    }
+
     public function vaccine(){
         return $this->hasOneThrough(
             Vaccine::class,

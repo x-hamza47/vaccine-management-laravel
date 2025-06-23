@@ -17,8 +17,8 @@ class VaccineScheduleSeeder extends Seeder
     public function run(): void
     {
         $childrens = Children::all();
-        $hospitals = Hospital::all();
-        $vaccines = Vaccine::all();
+        // $hospitals = Hospital::all();
+        $vaccines = Vaccine::where('available', true)->get();
 
         foreach ($childrens as $child) {
             $vaccine = $vaccines->random();
@@ -26,9 +26,11 @@ class VaccineScheduleSeeder extends Seeder
             VaccinationSchedule::create([
                 'child_id' => $child->id,
                 'vaccine_id' => $vaccine->id,
-                'hospital_id' => $hospitals->random()->id ?? 1,
+                // 'hospital_id' => $hospitals->random()->id ?? 1,
+                'hospital_id' => 8,
                 'date' => now()->addDays(rand(1,30)),
-                'status' => rand(0,1) ? 'completed' : 'pending',
+                // 'status' => rand(0,1) ? 'completed' : 'pending',
+                'status' => 'pending',
             ]);
         }
     }
