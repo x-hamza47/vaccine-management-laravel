@@ -2,19 +2,21 @@
 
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\Parent\ParentController;
 use App\Http\Controllers\UserApprovalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VaccinationScheduleController;
 use App\Http\Controllers\VaccineController;
+use App\Http\Controllers\Website\FrontController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard.index');
-});
+// Route::get('/', function () {
+//     return view('dashboard.index');
+// });
 Route::get('admin', [UserController::class, 'showLogin'])->name('login')->middleware('IsAuthenticated');
 Route::post('admin/login',[UserController::class, 'login'])->name('admin.login');
 Route::get('admin/logout',[UserController::class, 'logout'])->name('auth.logout');
-Route::get('admin/dashboard',[UserController::class, 'dashboard'])->name('show.dashboard')->middleware(['auth','IsUserValid','IsApproved']);
+Route::get('admin/dashboard',[UserController::class, 'dashboard'])->name('show.dashboard')->middleware(['auth','IsApproved']);
 
 
 Route::get('admin/register', function () {return view('dashboard.auth.register');})->name('register.show');
@@ -23,11 +25,11 @@ Route::post('admin/register',[UserController::class, 'store'])->name('user.regis
 
 // ! Children Controller
 
-Route::get('admin/children',[ChildrenController::class, 'index'])->name('child.index');
-Route::get('admin/edit/{id}',[ChildrenController::class, 'edit'])->name('child.edit');
-Route::put('admin/update/{id}',[ChildrenController::class, 'update'])->name('child.update');
-Route::get('admin/delete/{id}',[ChildrenController::class, 'destroy'])->name('child.delete');
-Route::get('admin/vaccine-requests',[ChildrenController::class, 'pending'])->name('child.pending.requests');
+Route::get('admin/children',[ChildrenController::class, 'index'])->name('child.index')->can('admin-view');
+Route::get('admin/edit/{id}',[ChildrenController::class, 'edit'])->name('child.edit')->can('admin-view');
+Route::put('admin/update/{id}',[ChildrenController::class, 'update'])->name('child.update')->can('admin-view');
+Route::get('admin/delete/{id}',[ChildrenController::class, 'destroy'])->name('child.delete')->can('admin-view');
+Route::get('admin/vaccine-requests',[ChildrenController::class, 'pending'])->name('child.pending.requests')->can('admin-view');
 Route::post('admin/vaccine-requests/approve/{id}',[ChildrenController::class, 'approve'])->name('child.approve.requests');
 Route::post('admin/vaccine-requests/reject/{id}',[ChildrenController::class, 'reject'])->name('child.reject.requests');
 
@@ -63,4 +65,18 @@ Route::delete('admin/user-approvals/{user}/reject',[UserApprovalController::clas
 // ?#---------------------  Info:: Hospital Routes ----------------------------#
 
 Route::get('admin/hospital/appointments',[HospitalController::class, 'appointments'])->name('hospital.appointments');
+Route::post('admin/hospital/appointments/update/{id}',[HospitalController::class, 'updateStatus'])->name('hospital.appointments.update');
+Route::get('admin/hospital/appointments/history',[HospitalController::class, 'history'])->name('hospital.appointments.history');
 
+
+// ?? ======================== Info: Parent Routes =========================== #
+Route::get('admin/parent',[ParentController::class, 'index'])->name('parent.child.index');
+Route::get('admin/parent/edit/{id}',[ParentController::class, 'edit'])->name('parent.child.edit');
+Route::put('admin/parent/update/{id}',[ParentController::class, 'update'])->name('parent.child.update');
+Route::get('admin/parent/schedule',[ParentController::class, 'schedule'])->name('parent.schedule.index');
+Route::get('admin/parent/appointments',[ParentController::class, 'showAppointments'])->name('parent.appointments');
+Route::get('admin/parent/history',[ParentController::class, 'history'])->name('parent.history');
+
+// !================================ Website Controllers =================================
+
+Route::get('/',[FrontController::class, 'index'])->name('web.index');

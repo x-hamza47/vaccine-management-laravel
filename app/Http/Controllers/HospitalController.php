@@ -71,7 +71,39 @@ class HospitalController extends Controller
 
             return view('dashboard.hospital.list', compact('appointments'));
         // return $hospitalId;
+    }
 
+    public function updateStatus(Request $request, $id)
+    {
 
+        $request->validate([
+            'status' => 'required|in:pending,completed',
+        ]);
+
+        $schedule = VaccinationSchedule::findOrFail($id);
+
+        $hospitalId = Auth::user()->hospital->id;
+        if($schedule->hospital_id !== $hospitalId){
+            return response()->json(['status' => true, 'message' => 'Hospital id not matched.']);
+        }
+        $schedule->update([
+            'status' => $request->status,
+        ]);
+
+        return response()->json(['status' => true, 'message' => 'Status updated successfully.']);
+    }
+
+    public function history(){
+        $hospitalId =  Auth::user()->hospital->id;
+
+        $appointments = VaccinationSchedule::with([
+            'child:id,name',
+            'vaccine:id,name'])
+            ->where('hospital_id', $hospitalId)
+            ->where('status', 'completed')
+            ->latest('date')
+            ->get();
+
+        return view('dashboard.hospital.history', compact('appointments'));
     }
 }

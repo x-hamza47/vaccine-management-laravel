@@ -2,7 +2,7 @@
 
 {{-- ? Page Css --}}
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashboard-assets/assets/vendor/css/pages/page-auth.css') }}" />
 @endpush
 
 @section('content')

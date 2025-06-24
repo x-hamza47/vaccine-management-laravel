@@ -26,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('hospital-view',function($user){
             return $user->role == 'hospital';
         });
+        Gate::define('parent-view',function($user){
+            return $user->role == 'parent';
+        });
     }
 }
