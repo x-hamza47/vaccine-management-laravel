@@ -30,7 +30,7 @@ class Children extends Model
         return $this->hasOneThrough(
             Vaccine::class,
             VaccinationSchedule::class,
-            'child_id',
+            'child_id', 
             'id',
             'id',
             'vaccine_id'

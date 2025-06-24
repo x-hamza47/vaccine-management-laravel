@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="card">
-
     <h5 class="card-header">Appointments</h5>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
@@ -49,7 +48,7 @@
     
 @endsection
 
-{{-- @push('scripts')
+@push('scripts')
 <script>
     $(document).ready(function(){
 
@@ -58,7 +57,7 @@
            let scheduleId =  $(this).data('id') ;
            let status =  $(this).is(':checked') ? 'completed' : 'pending' ;
 
-           let url = '{{ route("vaccination.updateStatus","ID") }}';
+           let url = '{{ route("hospital.appointments.update","ID") }}';
            var newUrl = url.replace("ID",scheduleId);
 
            $.ajax({
@@ -80,4 +79,4 @@
     })
 </script>
     
-@endpush --}}
+@endpush

@@ -151,13 +151,6 @@
       {{-- Info: Hospital --}}
       @can('hospital-view')
 
-        {{-- ! Vaccines --}}
-        <li class="menu-item">
-          <a href="" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-check-shield"></i>
-            <div data-i18n="update">Update Vaccine Status</div>
-          </a>
-        </li>
         {{-- ! appointments --}}
         <li class="menu-item {{ Route::is('hospital.appointments') ? 'active' : '' }}">
           <a href="{{ route('hospital.appointments') }}" class="menu-link">
@@ -165,9 +158,50 @@
             <div data-i18n="update">View Appointments</div>
           </a>
         </li>
+        {{-- ! history --}}
+        <li class="menu-item {{ Route::is('hospital.appointments.history') ? 'active' : '' }}">
+          <a href="{{ route('hospital.appointments.history') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-history"></i>
+            <div data-i18n="update">Appointment History</div>
+          </a>
+        </li>
 
       @endcan
         {{-- Info: Hospital End --}}
+
+        {{-- Info: Parent --}}
+        @can('parent-view')
+        {{-- ! My child --}}
+        <li class="menu-item {{ Route::is('parent.child.index') ? 'active' : '' }}">
+          <a href="{{ route('parent.child.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-child"></i>
+            <div data-i18n="my-child">My Children</div>
+          </a>
+        </li>
+        {{-- ! vaccination schedules --}}
+        <li class="menu-item {{ Route::is('parent.schedule.index') ? 'active' : '' }}">
+          <a href="{{ route('parent.schedule.index') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-calendar"></i>
+            <div data-i18n="my-child">Vaccination Schedule</div>
+          </a>
+        </li>
+        {{-- ! make appointment --}}
+        <li class="menu-item {{ Route::is('parent.appointment') ? 'active' : '' }}">
+          <a href="{{ route('parent.appointments') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-plus-medical"></i>
+            <div data-i18n="my-child">Book Appointment</div>
+          </a>
+        </li>
+        {{-- ! history --}}
+        <li class="menu-item {{ Route::is('parent.history') ? 'active' : '' }}">
+          <a href="{{ route('parent.history') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-history"></i>
+            <div data-i18n="update">Vaccination History</div>
+          </a>
+        </li>
+
+        @endcan
+        {{-- Info: Parent end --}}
 
 
       <li class="menu-header small text-uppercase">
@@ -245,7 +279,7 @@
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
-                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            <img src="{{ asset('dashboard-assets/assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
