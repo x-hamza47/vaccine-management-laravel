@@ -51,7 +51,7 @@
                         <span class="badge bg-secondary rounded-pill me-1">No Status</span>
                     @endif --}}
                     @php
-                        $status = $child->vaccinationSchedules->status;
+                        $status = $child->vaccinationSchedules->status ?? null;
                     @endphp
                 
                     @if ($status == 'completed')

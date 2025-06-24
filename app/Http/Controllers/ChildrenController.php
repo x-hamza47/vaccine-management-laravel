@@ -61,8 +61,11 @@ class ChildrenController extends Controller
             ->with([
                 'child:id,name,gender,user_id',
                 'child.parent:id,name',
-                'vaccine:id,name'])
+                'vaccine:id,name',
+                'hospital:id,hospital_name'
+            ])
             ->get();
+
         $hospitals = Hospital::all();
 
         return view('dashboard.admin.children.pending.list', compact('vacc_req', 'hospitals'));

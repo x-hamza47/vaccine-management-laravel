@@ -4,7 +4,6 @@
 
 <div class="card">
     <h5 class="card-header">All Approvals</h5>
-    
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
@@ -33,10 +32,12 @@
                             <select name="hospital_id" class="form-select form-select-sm @error('hospital_id') is-invalid @enderror">
                                 <option disabled selected>Select Hospital</option>
                                 @foreach ($hospitals as $hospital)
-                                    <option value="{{ $hospital->id }}">{{ $hospital->hospital_name }}</option>
+                                    <option value="{{ $hospital->id }}"
+                                        @selected($hospital->id == $req->hospital_id)
+                                        >{{ $hospital->hospital_name }}</option>
                                 @endforeach
                             </select>
-                            <input type="date" name="date" class="form-control form-control-sm @error('date')is-invalid @enderror">
+                            <input type="date" name="date" class="form-control form-control-sm @error('date')is-invalid @enderror" value="{{ $req->preferred_date }}">
                         </form> 
                     </td>
                     <td class="d-flex gap-2">

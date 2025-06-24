@@ -19,4 +19,9 @@ class VaccineRequest extends Model
     public function getGenderAttribute(){
         return ucfirst($this->child->gender);
     }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
+    }
 }

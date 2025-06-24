@@ -171,12 +171,25 @@
 
         {{-- Info: Parent --}}
         @can('parent-view')
-        {{-- ! My child --}}
-        <li class="menu-item {{ Route::is('parent.child.index') ? 'active' : '' }}">
-          <a href="{{ route('parent.child.index') }}" class="menu-link">
+
+        {{-- ! Children --}}
+        <li class="menu-item {{ Route::is('parent.child.*') ? 'open active' : '' }}">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-child"></i>
-            <div data-i18n="my-child">My Children</div>
+            <div data-i18n="Childrens">My Children</div>
           </a>
+          <ul class="menu-sub">
+            <li class="menu-item {{ Route::is('parent.child.index') ? 'active' : '' }}">
+              <a href="{{ route('parent.child.index') }}" class="menu-link">
+                <div data-i18n="All Child Details">All Childs</div>
+              </a>
+            </li>
+            <li class="menu-item {{ Route::is('parent.child.create') ? 'active' : '' }}">
+              <a href="{{ route('parent.child.create') }}" class="menu-link">
+                <div data-i18n="Add Child">Add Child</div>
+              </a>
+            </li>
+          </ul>
         </li>
         {{-- ! vaccination schedules --}}
         <li class="menu-item {{ Route::is('parent.schedule.index') ? 'active' : '' }}">
@@ -185,8 +198,16 @@
             <div data-i18n="my-child">Vaccination Schedule</div>
           </a>
         </li>
+        </li>
+        {{-- ! vaccination schedules --}}
+        <li class="menu-item {{ Route::is('parent.requests') ? 'active' : '' }}">
+          <a href="{{ route('parent.requests') }}" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-list-check"></i>
+            <div data-i18n="my-child">My Requests</div>
+          </a>
+        </li>
         {{-- ! make appointment --}}
-        <li class="menu-item {{ Route::is('parent.appointment') ? 'active' : '' }}">
+        <li class="menu-item {{ Route::is('parent.appointments') ? 'active' : '' }}">
           <a href="{{ route('parent.appointments') }}" class="menu-link">
             <i class="menu-icon tf-icons bx bx-plus-medical"></i>
             <div data-i18n="my-child">Book Appointment</div>
