@@ -70,12 +70,17 @@ Route::get('admin/hospital/appointments/history',[HospitalController::class, 'hi
 
 
 // ?? ======================== Info: Parent Routes =========================== #
+
 Route::get('admin/parent',[ParentController::class, 'index'])->name('parent.child.index');
 Route::get('admin/parent/edit/{id}',[ParentController::class, 'edit'])->name('parent.child.edit');
+Route::get('admin/parent/create',[ParentController::class, 'create'])->name('parent.child.create');
+Route::post('admin/parent/store',[ParentController::class, 'store'])->name('parent.child.store');
 Route::put('admin/parent/update/{id}',[ParentController::class, 'update'])->name('parent.child.update');
 Route::get('admin/parent/schedule',[ParentController::class, 'schedule'])->name('parent.schedule.index');
 Route::get('admin/parent/appointments',[ParentController::class, 'showAppointments'])->name('parent.appointments');
+Route::post('admin/parent/appointment/store',[ParentController::class, 'storeAppointments'])->name('parent.appointment.store');
 Route::get('admin/parent/history',[ParentController::class, 'history'])->name('parent.history');
+Route::get('admin/parent/requests',[ParentController::class, 'requests'])->name('parent.requests');
 
 // !================================ Website Controllers =================================
 

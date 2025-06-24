@@ -9,7 +9,6 @@
         <thead>
           <tr>
             <th>Child Name</th>
-            <th>Parent Name</th>
             <th>Vaccine</th>
             <th>Scheduled Date</th>
             <th>Hospital</th>
@@ -22,7 +21,6 @@
                 @foreach ($data as $schedule) 
                     <tr>
                     <td><strong>{{ $schedule->child->name }}</strong></td>
-                    <td>{{ $schedule->child->parent->name }}</td>
                     <td>{{ $schedule->vaccine->name }}</td>
                     <td>{{ $schedule->FormattedDate }}</td>
                     <td>{{ $schedule->hospital->hospital_name }}</td>

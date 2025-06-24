@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('child_id')->constrained('childrens')->onDelete('cascade');
             $table->foreignId('vaccine_id')->constrained('vaccines')->onDelete('cascade');
+            $table->foreignId('hospital_id')->constrained('hospitals')->onDelete('cascade');
+            $table->date('preferred_date');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
