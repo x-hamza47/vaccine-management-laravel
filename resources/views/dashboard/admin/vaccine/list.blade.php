@@ -3,6 +3,27 @@
 @section('content')
 <div class="card">
     <h5 class="card-header">Vaccines</h5>
+    <div class="d-flex">
+        <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('vaccine.index') }}">
+            <div class="col-auto">
+                <input type="text" name="search" class="form-control" placeholder="Search Vaccine" value="{{ request('search') }}">
+            </div>
+
+            <div class="col-md-auto">
+                <select name="status" class="form-select">
+                    <option value="">All Statuses</option>
+                    <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Available</option>
+                    <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Unavailable</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('vaccine.index') }}" class="btn btn-outline-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
@@ -15,8 +36,7 @@
         </thead>
         <tbody class="table-border-bottom-0">
 
-            @if ($vaccines->isNotEmpty())
-                @foreach ($vaccines as $vaccine) 
+                @forelse ($vaccines as $vaccine) 
                     <tr>
                     <td><strong>{{ $vaccine->name }}</strong></td>
                     <td>
@@ -33,11 +53,17 @@
                         </div>
                     </td>
                     </tr>
-                @endforeach
-            @endif
+                @empty
+                <tr>
+                    <td colspan="12" class="text-center text-muted p-3">No Vaccine found.</td>
+                </tr>
+                @endforelse
 
         </tbody>
       </table>
+      <div class="mt-3 px-4">
+        {{ $vaccines->links() }}
+    </div>
     </div>
   </div>
     

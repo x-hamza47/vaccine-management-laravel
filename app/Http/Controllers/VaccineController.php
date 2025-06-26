@@ -7,10 +7,23 @@ use Illuminate\Http\Request;
 
 class VaccineController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $vaccines = Vaccine::latest()->get();
-        return view('dashboard.admin.vaccine.list',compact('vaccines'));
+        $query = Vaccine::query();
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        if ($request->has('status') && $request->status != '') {
+            $query->where('available', $request->status);
+        }
+
+
+        $vaccines = $query->latest()->paginate(10)->appends($request->all());
+
+        return view('dashboard.admin.vaccine.list', compact('vaccines'));
     }
 
     public function update(Request $request, $id){

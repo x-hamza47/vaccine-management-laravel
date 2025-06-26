@@ -7,8 +7,22 @@ use Illuminate\Http\Request;
 
 class UserApprovalController extends Controller
 {
-    public function index(){
-        $users = User::where('is_approved',false)->latest()->get();
+    public function index(Request $request){
+        $query = User::where('is_approved',false);
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+        if ($request->filled('role')) {
+            $query->where('role', $request->input('role'));
+        }
+        $users = $query->latest()->paginate(10)->appends($request->all());
+        
         return view('dashboard.admin.user_approvals.list', compact('users'));
     }
 

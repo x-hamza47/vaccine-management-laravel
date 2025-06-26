@@ -3,6 +3,27 @@
 @section('content')
 <div class="card">
     <h5 class="card-header">Appointments</h5>
+    <div class="d-flex">
+        <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('hospital.appointments') }}">
+            <div class="col-auto">
+                <input type="text" name="search" class="form-control" placeholder="Search patient or vaccine" value="{{ request('search') }}">
+            </div>
+            
+          <div class="col-auto">
+            <select name="sort_by" class="form-select">
+                <option disabled selected>Sort By</option>
+                <option value="asc" {{ request('sort_by') == 'asc' ? 'selected' : '' }}>Date (Ascending)</option>
+                <option value="desc" {{ request('sort_by') == 'desc' ? 'selected' : '' }}>Date (Descending)</option>
+            </select>
+        </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('hospital.appointments') }}" class="btn btn-outline-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
@@ -38,11 +59,11 @@
                     <td colspan="12" class="text-center">No scheduled vaccinations available.</td>
                 </tr>
                 @endforelse
-                    
-
-
         </tbody>
       </table>
+      <div class="mt-3 px-4">
+        {{ $appointments->links() }}
+    </div>
     </div>
   </div>
     
