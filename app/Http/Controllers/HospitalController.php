@@ -10,8 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class HospitalController extends Controller
 {
-    public function index(){
-        $hospitals = Hospital::with('user:id,email')->latest()->get();
+    public function index(Request $request){
+        $query = Hospital::with('user:id,email');
+        
+        if($request->filled('search')){
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('hospital_name', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%");
+            });
+        }
+
+        if($request->filled('sort_by') && $request->sort_by != ''){
+            if($request->input('sort_by') == 'name'){
+                $query->orderby('hospital_name','asc');
+            }elseif($request->input('sort_by') == 'date'){
+                $query->orderBy('created_at', 'desc');
+            }
+        }else {
+            $query->latest('created_at');
+        }
+        $hospitals = $query->paginate(10)->appends($request->all());
         return view('dashboard.admin.hospital.list', compact('hospitals'));
     }
 
@@ -58,18 +78,41 @@ class HospitalController extends Controller
     }
 
     // !Hospital Dashboard
-    public function appointments(){
+    public function appointments(Request $request){
         
         $hospitalId = Auth::user()->hospital->id;
 
-        $appointments = VaccinationSchedule::with([
+        $query = VaccinationSchedule::with([
             'child:id,name', 
             'vaccine:id,name'])
-            ->where('hospital_id', $hospitalId)
-            ->latest('date')
-            ->get();
+            ->where('hospital_id', $hospitalId)->where('status','pending');
 
-            return view('dashboard.hospital.list', compact('appointments'));
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('child', function ($childQuery) use ($search) {
+                    $childQuery->where('name', 'like', "%{$search}%");
+                })->orWhereHas('vaccine', function ($vaccineQuery) use ($search) {
+                    $vaccineQuery->where('name', 'like', "%{$search}%");
+                });
+            });  
+        }
+
+        if ($request->filled('sort_by') && in_array($request->sort_by, ['asc', 'desc'])) {
+            $query->orderBy('date', $request->sort_by);
+        } else {
+            $query->latest('date'); 
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
+        }
+
+        $appointments = $query->latest('date')->paginate(10)->appends($request->all());
+
+
+        return view('dashboard.hospital.list', compact('appointments'));
         // return $hospitalId;
     }
 
@@ -93,16 +136,37 @@ class HospitalController extends Controller
         return response()->json(['status' => true, 'message' => 'Status updated successfully.']);
     }
 
-    public function history(){
+    public function history(Request $request){
         $hospitalId =  Auth::user()->hospital->id;
 
-        $appointments = VaccinationSchedule::with([
+        $query = VaccinationSchedule::with([
             'child:id,name',
             'vaccine:id,name'])
             ->where('hospital_id', $hospitalId)
-            ->where('status', 'completed')
-            ->latest('date')
-            ->get();
+            ->where('status', 'completed');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('child', function ($childQuery) use ($search) {
+                    $childQuery->where('name', 'like', "%{$search}%");
+                })->orWhereHas('vaccine', function ($vaccineQuery) use ($search) {
+                    $vaccineQuery->where('name', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        if ($request->filled('sort_by') && in_array($request->sort_by, ['asc', 'desc'])) {
+            $query->orderBy('date', $request->sort_by);
+        } else {
+            $query->latest('date');
+        }
+
+
+        $appointments = $query->latest('date')->paginate(10)->appends($request->all());
+            // ->latest('date')
+            // ->get();
 
         return view('dashboard.hospital.history', compact('appointments'));
     }

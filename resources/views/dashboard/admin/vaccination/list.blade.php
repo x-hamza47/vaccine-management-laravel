@@ -3,7 +3,43 @@
 @section('content')
 <div class="card">
 
-    <h5 class="card-header">Vaccinations Report</h5>
+    <h5 class="card-header">Upcoming Vaccinations</h5>
+    <div class="d-flex">
+        <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('vaccination.index') }}">
+            <div class="col-auto">
+                <input type="text" name="search" class="form-control" placeholder="Search child or parent" value="{{ request('search') }}">
+            </div>
+            <div class="col-2">
+                <select name="hospital_id" class="form-select">
+                    <option value="">All Hospitals</option>
+                    @foreach ($hospitals as $hospital)
+                        <option value="{{ $hospital->id }}" {{ request('hospital_id') == $hospital->id ? 'selected' : '' }}>
+                            {{ $hospital->hospital_name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-auto">
+                <select name="vaccine_id" class="form-select">
+                    <option value="">All Vaccines</option>
+                    @foreach ($vaccines as $vaccine)
+                        <option value="{{ $vaccine->id }}" {{ request('vaccine_id') == $vaccine->id ? 'selected' : '' }}>
+                            {{ $vaccine->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-auto">
+                <input type="date" name="date" class="form-control" value="{{ request('date') }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ route('vaccination.index') }}" class="btn btn-outline-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
@@ -18,9 +54,7 @@
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-
-            @if ($data->isNotEmpty())
-                @foreach ($data as $schedule) 
+                @forelse ($data as $schedule) 
                     <tr>
                     <td><strong>{{ $schedule->child->name }}</strong></td>
                     <td>{{ $schedule->child->parent->name }}</td>
@@ -48,11 +82,17 @@
                         </div>
                     </td>
                     </tr>
-                @endforeach
-            @endif
+                @empty
+                <tr>
+                    <td colspan="12" class="text-center text-muted p-3">No Data found.</td>
+                </tr>
+                @endforelse
 
         </tbody>
       </table>
+      <div class="mt-3 px-4">
+        {{ $data->links() }}
+    </div>
     </div>
   </div>
     

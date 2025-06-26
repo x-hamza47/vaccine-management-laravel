@@ -61,6 +61,7 @@
                         <div class="col-sm-10">
                             <select class="form-select @error('status') is-invalid @enderror" id="status" name="status">
                                 <option selected disabled>Select status</option>
+                                {{-- <option value="" @selected($child->vaccinationSchedules->status == null)>No Status</option> --}}
                                 <option value="completed" @selected($child->vaccinationSchedules->status == 'completed')>Completed</option>
                                 <option value="pending" @selected($child->vaccinationSchedules->status == 'pending')>Pending</option>
                             </select>

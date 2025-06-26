@@ -4,6 +4,27 @@
 <div class="card">
 
     <h5 class="card-header">All Hospitals List</h5>
+    <div class="d-flex">
+      <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('hospital.index') }}">
+          <div class="col-auto">
+              <input type="text" name="search" class="form-control" placeholder="Search hospital or location" value="{{ request('search') }}">
+          </div>
+
+          <div class="col-auto">
+            <select name="sort_by" class="form-select">
+                <option disabled selected>Sort By</option>
+                <option value="name" {{ request('sort_by') == 'name' ? 'selected' : '' }}>Name (A-Z)</option>
+                <option value="date" {{ request('sort_by') == 'date' ? 'selected' : '' }}>Date (Newest First)</option>
+            </select>
+        </div>
+          <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Filter</button>
+          </div>
+          <div class="col-auto">
+              <a href="{{ route('hospital.index') }}" class="btn btn-outline-secondary">Reset</a>
+          </div>
+      </form>
+  </div>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>

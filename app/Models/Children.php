@@ -19,7 +19,7 @@ class Children extends Model
 
     public function vaccinationSchedules()
     {
-        return $this->hasOne(VaccinationSchedule::class,'child_id');
+        return $this->hasMany(VaccinationSchedule::class,'child_id');
     }
 
     public function vaccineRequests(){

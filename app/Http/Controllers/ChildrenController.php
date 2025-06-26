@@ -10,10 +10,27 @@ use App\Models\VaccineRequest;
 
 class ChildrenController extends Controller
 {
-    public function index(){
-       $childs =  Children::with(['parent','vaccinationSchedules:id,child_id,status'])
-       ->latest('created_at')
-       ->get();
+    public function index(Request $request){
+        $query = Children::with(['parent', 'vaccinationSchedules:id,child_id,status'])
+            ->latest('created_at');
+
+        // 🧠 Search (only for admin)
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhereHas('parent', function ($subQuery) use ($search) {
+                        $subQuery->where('name', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        if ($request->filled('gender')) {
+            $query->where('gender', $request->input('gender'));
+        }
+
+        $childs = $query->paginate(10)->appends($request->all());
        return view('dashboard.admin.children.list',compact('childs'));
     }
 

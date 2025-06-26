@@ -10,7 +10,6 @@
             <th>Child Name</th>
             <th>Date of Birth</th>
             <th>Gender</th>
-            <th>Parent Name</th>
             <th>Vaccination Status</th>
             <th>Registered On</th>
             <th>Actions</th>
@@ -24,9 +23,8 @@
                     <td><strong>{{ $child->name }}</strong></td>
                     <td>{{ $child->dob }}</td>
                     <td>{{ ucfirst($child->gender) }}</td>
-                    <td>{{ $child->parent->name }}</td>
                     <td >
-                     {{-- @php
+                     @php
                         $pendingCount = $child->vaccinationSchedules->where('status', 'pending')->count();
                         $completedCount = $child->vaccinationSchedules->where('status', 'completed')->count();
                     @endphp
@@ -49,8 +47,8 @@
                     @endif
                     @if ($pendingCount == 0 && $completedCount == 0)
                         <span class="badge bg-secondary rounded-pill me-1">No Status</span>
-                    @endif --}}
-                    @php
+                    @endif
+                    {{-- @php
                         $status = $child->vaccinationSchedules->status ?? null;
                     @endphp
                 
@@ -60,7 +58,7 @@
                         <span class="badge bg-warning rounded-pill me-1">Pending</span>
                     @else
                         <span class="badge bg-secondary rounded-pill me-1">No Status</span>
-                    @endif
+                    @endif --}}
     
                     </td>
                     <td>{{ $child->created_at->format('F j, Y') }}</td>

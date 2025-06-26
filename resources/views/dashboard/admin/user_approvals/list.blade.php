@@ -4,6 +4,27 @@
 <div class="card">
 
     <h5 class="card-header">All Approvals</h5>
+    <div class="d-flex">
+      <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('user.approval.index') }}">
+          <div class="col-auto">
+              <input type="text" name="search" class="form-control" placeholder="Search name or email" value="{{ request('search') }}">
+          </div>
+
+          <div class="col-auto">
+            <select name="role" class="form-select">
+                <option disabled selected>--Filter By--</option>
+                <option value="parent" {{ request('role') == 'parent' ? 'selected' : '' }}>Parent</option>
+                <option value="hospital" {{ request('role') == 'hospital' ? 'selected' : '' }}>Hospital</option>
+            </select>
+        </div>
+          <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Filter</button>
+          </div>
+          <div class="col-auto">
+              <a href="{{ route('user.approval.index') }}" class="btn btn-outline-secondary">Reset</a>
+          </div>
+      </form>
+  </div>
     <div class="table-responsive text-nowrap">
       <table class="table table-hover">
         <thead>
@@ -16,8 +37,7 @@
         </thead>
         <tbody class="table-border-bottom-0">
 
-            @if ($users->isNotEmpty())
-                @foreach ($users as $user) 
+                @forelse ($users as $user) 
                     <tr>
                     <td><strong>{{ $user->name }}</strong></td>
                     <td>{{ $user->email }}</td>
@@ -55,8 +75,11 @@
                     </form>
                     </td>
                     </tr>
-                @endforeach
-            @endif
+                @empty
+                <tr>
+                  <td colspan="12" class="text-center text-muted p-3">No Request found.</td>
+              </tr>
+                @endforelse
 
         </tbody>
       </table>
