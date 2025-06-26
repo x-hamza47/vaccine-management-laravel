@@ -61,7 +61,7 @@
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
+         <img src="{{ asset('assets/img/logo.png') }}" alt="">
           <h1 class="sitename">Medilab</h1>
         </a>
 
@@ -72,23 +72,6 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#departments">Departments</a></li>
             <li><a href="#doctors">Doctors</a></li>
-            <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-              </ul>
-            </li>
             <li><a href="#contact">Contact</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -365,47 +348,53 @@
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+        <form action="{{ route('web.store') }}" method="POST" role="form" class="php-email-form">
+          @csrf
           <div class="row">
-            <div class="col-md-4 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+            <div class="col-md form-group">
+              @if ($childs->isNotEmpty())
+              <select name="child_id" id="hospital" class="form-select">
+                <option disabled selected>Select Child</option>
+                @foreach ($childs as $child)
+                <option value="{{ $child->id }}">{{ $child->name }}</option>               
+                @endforeach
+              </select>
+              @else
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+              @endif
             </div>
-            <div class="col-md-4 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
-            </div>
-            <div class="col-md-4 form-group mt-3 mt-md-0">
+
+            {{-- <div class="col-md form-group mt-3 mt-md-0">
               <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">
-            </div>
+            </div> --}}
           </div>
           <div class="row">
             <div class="col-md-4 form-group mt-3">
-              <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required="">
+              <input type="date" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date">
             </div>
             <div class="col-md-4 form-group mt-3">
-              <select name="department" id="department" class="form-select" required="">
-                <option value="">Select Department</option>
-                <option value="Department 1">Department 1</option>
-                <option value="Department 2">Department 2</option>
-                <option value="Department 3">Department 3</option>
+              <select name="hospital" id="hospital" class="form-select">
+                <option disabled selected>Select Hospital</option>
+                @foreach ($hospitals as $hospital)
+                <option value="{{ $hospital->id }}">{{ $hospital->hospital_name }}</option>
+                @endforeach
               </select>
             </div>
             <div class="col-md-4 form-group mt-3">
-              <select name="doctor" id="doctor" class="form-select" required="">
-                <option value="">Select Doctor</option>
-                <option value="Doctor 1">Doctor 1</option>
-                <option value="Doctor 2">Doctor 2</option>
-                <option value="Doctor 3">Doctor 3</option>
+              <select name="vaccine" id="vaccine" class="form-select" >
+                <option value="">Select Vaccine</option>
+                @foreach ($vaccines as $vaccine)
+                <option value="{{ $vaccine->id }}">{{ $vaccine->name }}</option>
+                @endforeach
               </select>
             </div>
           </div>
 
-          <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-          </div>
+
           <div class="mt-3">
-            <div class="loading">Loading</div>
+            {{-- <div class="loading">Loading</div>
             <div class="error-message"></div>
-            <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
+            <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div> --}}
             <div class="text-center"><button type="submit">Make an Appointment</button></div>
           </div>
         </form>
@@ -1081,7 +1070,7 @@
 
   <!-- Vendor JS Files -->
   <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+  {{-- <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script> --}}
   <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
   <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
