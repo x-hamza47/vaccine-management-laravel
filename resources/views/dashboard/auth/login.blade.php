@@ -2,21 +2,21 @@
 
     {{-- ? Page Css --}}
     @push('styles')
-     <link rel="stylesheet" href="{{ asset('dashboard-assets/assets/vendor/css/pages/page-auth.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('dashboard-assets/assets/vendor/css/pages/page-auth.css') }}" />
     @endpush
-    
+
     @section('content')
-    <!-- Content -->
-    <div class="container-xxl">
-        <div class="authentication-wrapper authentication-basic container-p-y">
-          <div class="authentication-inner" style="max-width: 400px">
-            <!-- Register -->
-            <div class="card">
-              <div class="card-body">
-                <!-- Logo -->
-                <div class="app-brand justify-content-center">
-                  <a href="index.html" class="app-brand-link gap-2">
-                    {{-- <span class="app-brand-logo demo">
+        <!-- Content -->
+        <div class="container-xxl">
+            <div class="authentication-wrapper authentication-basic container-p-y">
+                <div class="authentication-inner" style="max-width: 400px">
+                    <!-- Register -->
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Logo -->
+                            <div class="app-brand justify-content-center">
+                                <a href="index.html" class="app-brand-link gap-2">
+                                    {{-- <span class="app-brand-logo demo">
                       <svg
                         width="25"
                         viewBox="0 0 25 42"
@@ -49,13 +49,13 @@
                                 <mask id="mask-2" fill="white">
                                   <use xlink:href="#path-1"></use>
                                 </mask>
-                                <use fill="#696cff" xlink:href="#path-1"></use>
+                                <use fill="#1977cc" xlink:href="#path-1"></use>
                                 <g id="Path-3" mask="url(#mask-2)">
-                                  <use fill="#696cff" xlink:href="#path-3"></use>
+                                  <use fill="#1977cc" xlink:href="#path-3"></use>
                                   <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
                                 </g>
                                 <g id="Path-4" mask="url(#mask-2)">
-                                  <use fill="#696cff" xlink:href="#path-4"></use>
+                                  <use fill="#1977cc" xlink:href="#path-4"></use>
                                   <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
                                 </g>
                               </g>
@@ -63,7 +63,7 @@
                                 id="Triangle"
                                 transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
                               >
-                                <use fill="#696cff" xlink:href="#path-5"></use>
+                                <use fill="#1977cc" xlink:href="#path-5"></use>
                                 <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
                               </g>
                             </g>
@@ -72,76 +72,63 @@
                       </svg>
                     </span>
                     <span class="app-brand-text demo text-body fw-bolder">Sneat</span> --}}
-                  </a>
-                </div>
-                <!-- /Logo -->
-                <h4 class="mb-2">Welcome to VMS! 👋</h4>
-                <p class="mb-4">Please sign-in to your account and start the adventure</p>
-                {{-- ?  Form --}}
-                <form id="formAuthentication" class="mb-3" action="{{ route('admin.login') }}" method="POST">
-                  @csrf
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                      type="text"
-                      class="form-control @error('email') is-invalid @enderror"
-                      id="email"
-                      name="email"
-                      placeholder="Enter your email address"
-                      autofocus
-                    />
-                    @error('email')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                  </div>
-                  <div class="mb-3 form-password-toggle">
-                    <div class="d-flex justify-content-between">
-                      <label class="form-label" for="password">Password</label>
-                      <a href="auth-forgot-password-basic.html">
-                        <small>Forgot Password?</small>
-                      </a>
-                    </div>
-                    <div class="input-group input-group-merge">
-                      <input
-                        type="password"
-                        id="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        name="password"
-                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                        aria-describedby="password"
-                      />
-                      <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                      @error('password')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="remember-me" />
-                      <label class="form-check-label" for="remember-me"> Remember Me </label>
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
-                  </div>
-                </form>
-  
-                <p class="text-center">
-                  <span>New on our platform?</span>
-                  <a href="{{ route('register.show') }}">
-                    <span>Create an account</span>
-                  </a>
-                </p>
-              </div>
-            </div>
-            <!-- /Register -->
-          </div>
-        </div>
-      </div>
-  
-      <!-- / Content -->
-  @endsection
-  
+                                </a>
+                            </div>
+                            <!-- /Logo -->
+                            <h4 class="mb-2">Welcome to VMS! 👋</h4>
+                            <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                            {{-- ?  Form --}}
+                            <form id="formAuthentication" class="mb-3" action="{{ route('admin.login') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" placeholder="Enter your email address" autofocus />
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3 form-password-toggle">
+                                    <div class="d-flex justify-content-between">
+                                        <label class="form-label" for="password">Password</label>
+                                        <a href="auth-forgot-password-basic.html">
+                                            <small>Forgot Password?</small>
+                                        </a>
+                                    </div>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" id="password"
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                            aria-describedby="password" />
+                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="remember-me" />
+                                        <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                </div>
+                            </form>
 
-  
+                            <p class="text-center">
+                                <span>New on our platform?</span>
+                                <a href="{{ route('register.show') }}">
+                                    <span>Create an account</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /Register -->
+                </div>
+            </div>
+        </div>
+
+        <!-- / Content -->
+    @endsection

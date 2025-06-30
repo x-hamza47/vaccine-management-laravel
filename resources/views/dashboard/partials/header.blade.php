@@ -6,7 +6,6 @@
   data-theme="theme-default"
   data-assets-path="../assets/"
   data-template="vertical-menu-template-free"
-  {{-- data-bs-theme="dark" --}}
 >
   <head>
     <meta charset="utf-8" />

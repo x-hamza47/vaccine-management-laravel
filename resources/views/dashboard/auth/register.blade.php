@@ -15,7 +15,7 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
-                {{-- <span class="app-brand-logo demo">
+                                {{-- <span class="app-brand-logo demo">
                   <svg
                     width="25"
                     viewBox="0 0 25 42"
@@ -48,13 +48,13 @@
                             <mask id="mask-2" fill="white">
                               <use xlink:href="#path-1"></use>
                             </mask>
-                            <use fill="#696cff" xlink:href="#path-1"></use>
+                            <use fill="#1977cc" xlink:href="#path-1"></use>
                             <g id="Path-3" mask="url(#mask-2)">
-                              <use fill="#696cff" xlink:href="#path-3"></use>
+                              <use fill="#1977cc" xlink:href="#path-3"></use>
                               <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
                             </g>
                             <g id="Path-4" mask="url(#mask-2)">
-                              <use fill="#696cff" xlink:href="#path-4"></use>
+                              <use fill="#1977cc" xlink:href="#path-4"></use>
                               <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
                             </g>
                           </g>
@@ -62,7 +62,7 @@
                             id="Triangle"
                             transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
                           >
-                            <use fill="#696cff" xlink:href="#path-5"></use>
+                            <use fill="#1977cc" xlink:href="#path-5"></use>
                             <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
                           </g>
                         </g>
@@ -79,50 +79,55 @@
                             effortlessly.</p>
 
                         <form id="formAuthentication" class="mb-3" action="{{ route('user.register') }}" method="POST">
-                          @csrf
+                            @csrf
                             {{-- ?Role Select --}}
                             <div class="mb-3">
                                 <label for="role" class="form-label">Register As</label>
-                                <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
+                                <select class="form-select @error('role') is-invalid @enderror" id="role"
+                                    name="role">
                                     <option selected disabled>Select your role</option>
                                     <option value="parent" {{ old('role') == 'parent' ? 'selected' : '' }}>Parent</option>
-                                    <option value="hospital" {{ old('role') == 'hospital' ? 'selected' : '' }}>Hospital</option>
+                                    <option value="hospital" {{ old('role') == 'hospital' ? 'selected' : '' }}>Hospital
+                                    </option>
                                 </select>
                                 @error('role')
-                                  <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             {{-- ? Full Name --}}
                             <div class="mb-3 d-flex gap-4">
                                 <div class="w-100">
                                     <label for="username" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control  @error('name') is-invalid @enderror" id="username" name="name"
-                                        placeholder="Enter your full name" value="{{ old('name') }}" />
-                                      @error('name')
+                                    <input type="text" class="form-control  @error('name') is-invalid @enderror"
+                                        id="username" name="name" placeholder="Enter your full name"
+                                        value="{{ old('name') }}" />
+                                    @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
-                                      @enderror
+                                    @enderror
                                 </div>
                                 {{-- ? Email --}}
                                 <div class="mb-3 w-100">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                                        placeholder="Enter your email" value="{{ old('email') }}"/>
-                                        @error('email')
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" placeholder="Enter your email"
+                                        value="{{ old('email') }}" />
+                                    @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
-                                      @enderror
+                                    @enderror
                                 </div>
                             </div>
                             {{-- ? Password --}}
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                                    <input type="password" id="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                  @enderror
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -132,17 +137,20 @@
                                 {{-- ? Child name --}}
                                 <div class="mb-3">
                                     <label for="c_name" class="form-label">Child Name</label>
-                                    <input type="text" class="form-control @error('child_name') is-invalid @enderror" id="c_name" name="child_name" placeholder="Child name" autofocus value="{{ old('child_name') }}"/>
-                                        @error('child_name')
+                                    <input type="text" class="form-control @error('child_name') is-invalid @enderror"
+                                        id="c_name" name="child_name" placeholder="Child name" autofocus
+                                        value="{{ old('child_name') }}" />
+                                    @error('child_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
-                                      @enderror
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="dob" class="form-label">Date of Birth</label>
-                                    <input class="form-control @error('dob') is-invalid @enderror" type="date" id="dob" name="dob" value="{{ old('dob') }}"/>
+                                    <input class="form-control @error('dob') is-invalid @enderror" type="date"
+                                        id="dob" name="dob" value="{{ old('dob') }}" />
                                     @error('dob')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                  @enderror
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 {{-- ? gender --}}
@@ -155,17 +163,17 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
-                                            value="female" {{ old('gender') == 'female' ? 'checked' : '' }}/>
+                                            value="female" {{ old('gender') == 'female' ? 'checked' : '' }} />
                                         <label class="form-check-label" for="inlineRadio2">Female</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="gender" id="inlineRadio3"
-                                            value="other" {{ old('gender') == 'other' ? 'checked' : '' }}/>
+                                            value="other" {{ old('gender') == 'other' ? 'checked' : '' }} />
                                         <label class="form-check-label" for="inlineRadio3">Other</label>
                                     </div>
                                     @error('gender')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                  @enderror
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- ? Parents Field End --}}
@@ -176,26 +184,32 @@
                                 {{-- ? Hospital name --}}
                                 <div class="mb-3">
                                     <label for="h_name" class="form-label">Hospital Name</label>
-                                    <input type="text" class="form-control @error('hospital_name') is-invalid @enderror" id="h_bname" name="hospital_name"
-                                        placeholder="Hospital name" autofocus  value="{{ old('hospital_name') }}"/>
-                                        @error('hospital_name')
+                                    <input type="text"
+                                        class="form-control @error('hospital_name') is-invalid @enderror" id="h_bname"
+                                        name="hospital_name" placeholder="Hospital name" autofocus
+                                        value="{{ old('hospital_name') }}" />
+                                    @error('hospital_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
-                                      @enderror
+                                    @enderror
                                 </div>
                                 {{-- ?Address --}}
                                 <div class="mb-3">
-                                  <label for="address" class="form-label">Hospital Address</label>
-                                  <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="Address"  value="{{ old('address') }}"/>
-                                  @error('address')
-                                  <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                    <label for="address" class="form-label">Hospital Address</label>
+                                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                        id="address" name="address" placeholder="Address"
+                                        value="{{ old('address') }}" />
+                                    @error('address')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
-                                  <label for="location" class="form-label">Location</label>
-                                  <input type="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location" placeholder="City/Area" value="{{ old('location') }}"/>
-                                  @error('location')
-                                  <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                    <label for="location" class="form-label">Location</label>
+                                    <input type="text" class="form-control @error('location') is-invalid @enderror"
+                                        id="location" name="location" placeholder="City/Area"
+                                        value="{{ old('location') }}" />
+                                    @error('location')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             {{-- !Hospital Field End --}}
@@ -229,25 +243,25 @@
 @endsection
 
 @push('scripts')
-<script>
-    $(document).ready(function () {
-        function toggleRoleFields(role) {
-            if (role === 'parent') {
-                $('#parent-fields').show().find('input, select').prop('disabled', false);
-                $('#hospital-fields').hide().find('input, select').prop('disabled', true);
-            } else if (role === 'hospital') {
-                $('#hospital-fields').show().find('input, select').prop('disabled', false);
-                $('#parent-fields').hide().find('input, select').prop('disabled', true);
-            } else {
-                $('#parent-fields, #hospital-fields').hide().find('input, select').prop('disabled', true);
+    <script>
+        $(document).ready(function() {
+            function toggleRoleFields(role) {
+                if (role === 'parent') {
+                    $('#parent-fields').show().find('input, select').prop('disabled', false);
+                    $('#hospital-fields').hide().find('input, select').prop('disabled', true);
+                } else if (role === 'hospital') {
+                    $('#hospital-fields').show().find('input, select').prop('disabled', false);
+                    $('#parent-fields').hide().find('input, select').prop('disabled', true);
+                } else {
+                    $('#parent-fields, #hospital-fields').hide().find('input, select').prop('disabled', true);
+                }
             }
-        }
 
-        $('#role').on('change', function () {
-            toggleRoleFields($(this).val());
+            $('#role').on('change', function() {
+                toggleRoleFields($(this).val());
+            });
+
+            toggleRoleFields($('#role').val());
         });
-
-        toggleRoleFields($('#role').val());
-    });
-</script>
+    </script>
 @endpush
