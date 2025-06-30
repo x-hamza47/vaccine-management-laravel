@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Vaccine;
+use App\Models\Children;
+use App\Models\Hospital;
 use Illuminate\Http\Request;
+use App\Models\VaccineRequest;
+use App\Models\VaccinationSchedule;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -75,6 +80,36 @@ class UserController extends Controller
     }
 
     public function dashboard(){
+        $user = Auth::user();
+
+        if ($user->role == 'admin') {
+            $totalChildren = Children::count();
+            $totalHospitals = Hospital::count();
+            $totalVaccines = Vaccine::count();
+            $totalAvailableVaccines = Vaccine::where('available',true)->count();
+            $totalUnvailableVaccines = Vaccine::where('available',false)->count();
+            $pendingRequests = VaccineRequest::where('status', 'pending')
+                ->with([
+                    'child:id,name,gender,user_id',
+                    'child.parent:id,name',
+                    'vaccine:id,name',
+                    'hospital:id,hospital_name'
+                ])
+                ->get();
+
+      
+     
+
+            // ✅ Return view with required variables
+            return view('dashboard.dashboard', compact(
+                'totalChildren',
+                'totalHospitals',
+                'totalVaccines',
+                'pendingRequests',
+                'totalAvailableVaccines',
+                'totalUnvailableVaccines'
+            ));
+        }
         return view('dashboard.dashboard');
     }
 

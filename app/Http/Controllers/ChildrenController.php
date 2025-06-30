@@ -45,7 +45,6 @@ class ChildrenController extends Controller
             'name' => 'required|string',
             'dob' => 'required|date',
             'gender' => 'required|in:male,female,other',
-            'status' => 'required|in:pending,completed',
         ]);
 
         $child = Children::find($id);
@@ -56,11 +55,11 @@ class ChildrenController extends Controller
             'gender' => $request->gender,
         ]);
 
-        if($child->vaccinationSchedules){
-            $child->vaccinationSchedules->update([
-                'status' => $request->status,
-            ]);
-        }
+        // if($child->vaccinationSchedules){
+        //     $child->vaccinationSchedules->update([
+        //         'status' => $request->status,
+        //     ]);
+        // }
         return redirect()->route('child.index')->with('success', 'Child updated successfully.');
     }
     

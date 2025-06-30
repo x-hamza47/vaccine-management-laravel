@@ -70,9 +70,18 @@
             <li><a href="#hero" class="active">Home<br></a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#departments">Departments</a></li>
-            <li><a href="#doctors">Doctors</a></li>
+            {{-- <li><a href="#departments">Departments</a></li> --}}
+            {{-- <li><a href="#doctors">Doctors</a></li> --}}
             <li><a href="#contact">Contact</a></li>
+            @auth
+              
+            <li><a href="{{ route('auth.logout') }}">Logout</a></li>
+            <a class="cta-btn d-none d-sm-block" href="{{ route('show.dashboard') }}">Dashboard</a>
+            @endauth
+            @guest
+            <li><a href="{{ route('login') }}">Login</a></li>
+            <li><a href="{{ route('register.show') }}">Register</a></li>
+            @endguest
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
