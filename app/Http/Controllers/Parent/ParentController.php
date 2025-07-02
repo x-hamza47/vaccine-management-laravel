@@ -13,82 +13,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ParentController extends Controller
 {
-    public function index(){
-        $childs =  Children::with(['parent', 'vaccinationSchedules:id,child_id,status'])
-        ->where('user_id', Auth::user()->id)
-            ->latest('created_at')
-            ->get();
-        return view('dashboard.parent.children.list',compact('childs'));
-    }
-
-    public function edit($id){
-        $child =  Children::with(['parent', 'vaccinationSchedules:id,child_id,status'])
-        ->where('user_id', Auth::user()->id)
-        ->findOrFail($id);
-        return view('dashboard.parent.children.edit',compact('child'));
-    }
-
-    public function create(){
-        return view('dashboard.parent.children.create');
-    }
-
-    public function store(Request $request)
+    public function showAppointments()
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'dob' => 'required|date',
-            'gender' => 'required|in:male,female,other',
-        ]);
-
-        Children::create([
-            'name' => $request->name,
-            'dob' => $request->dob,
-            'gender' => $request->gender,
-            'user_id' => Auth::id(),
-        ]);
-
-        return redirect()->route('parent.child.index')->with('success', 'Child added successfully.');
-    }
-
-    public function update(Request $request, Int $id)
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'dob' => 'required|date',
-            'gender' => 'required|in:male,female,other',
-        ]);
-
-        $child = Children::where('user_id', Auth::id())->findOrFail($id);
-
-        $child->update([
-            'name' => $request->name,
-            'dob' => $request->dob,
-            'gender' => $request->gender,
-        ]);
-        
-        return redirect()->route('parent.child.index')->with('success', 'Child updated successfully.');
-    }
-
-    public function schedule(){
-        $childs = Auth::user()->children->pluck('id');
-        $data = VaccinationSchedule::with(['child.parent', 'vaccine', 'hospital'])
-            ->whereDate('date', '>=', now())
-            ->where('status', 'pending')
-            ->whereIn('child_id', $childs)
-            ->latest()
-            ->get();
-        return view('dashboard.parent.schedule',compact('data'));
-    }
-    // ! Appointments
-
-    public function showAppointments(){
         $childs = Auth::user()->children;
         $vaccines = Vaccine::where('available', true)->get();
         $hospitals = Hospital::all();
-        return view('dashboard.parent.appointments',compact('childs','vaccines','hospitals'));
+        return view('dashboard.parent.appointments', compact('childs', 'vaccines', 'hospitals'));
     }
 
-    public function storeAppointments(Request $request){
+    public function storeAppointments(Request $request)
+    {
         $request->validate([
             'child_id' => 'required|exists:childrens,id',
             'vaccine' => 'required|exists:vaccines,id',
@@ -96,9 +30,9 @@ class ParentController extends Controller
             'date' => 'required|date|after_or_equal:today',
         ]);
 
-        $child = Children::where('id',$request->child_id)
-        ->where('user_id',Auth::id())
-        ->firstOrFail();
+        $child = Children::where('id', $request->child_id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
 
         VaccineRequest::create([
             'child_id' => $request->child_id,
@@ -107,36 +41,39 @@ class ParentController extends Controller
             'preferred_date' => $request->date,
             'status' => 'pending',
         ]);
-        return redirect()->route('parent.schedule.index')->with('success', 'Appointment Requested successfully.');
+        return redirect()->route('parent.requests')->with('success', 'Appointment Requested successfully.');
     }
 
-    public function history(){
+
+    public function requests(Request $request)
+    {
         $childs = Auth::user()->children->pluck('id');
 
-        $data = VaccinationSchedule::with(['child', 'vaccine', 'hospital'])
-        ->whereIn('child_id', $childs)
-        ->where(function($query){
-            $query->where('status','completed')
-            ->orWhereDate('date','<', now());
-        })
-        ->latest('date')
-        ->get();
-
-        return view('dashboard.parent.history', compact('data'));
-    }
-
-    public function requests(){
-        $childs = Auth::user()->children->pluck('id');
-
-        $requests = VaccineRequest::with([
+        $query = VaccineRequest::with([
             'vaccine:id,name',
             'hospital:id,hospital_name',
             'child:id,name',
         ])
-            ->whereIn('child_id', $childs)
-            ->latest()
-            ->get();
+        ->whereIn('child_id', $childs);
 
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('vaccine', function ($v) use ($search) {
+                    $v->where('name', 'like', "%{$search}%");
+                })->orWhereHas('hospital', function ($h) use ($search) {
+                    $h->where('hospital_name', 'like', "%{$search}%");
+                })->orWhereHas('child', function ($c) use ($search) {
+                    $c->where('name', 'like', "%{$search}%");
+                });
+            });
+        }
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $requests = $query->latest()->paginate(10)->appends($request->all());
         return view('dashboard.parent.request', compact('requests'));
     }
 }

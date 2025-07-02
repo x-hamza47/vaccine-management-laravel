@@ -6,7 +6,7 @@
     <div>
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <h5 class="mb-0">Book Appointment</h5>
+                <h3 class="mb-0">Book Appointment</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('parent.appointment.store') }}" method="POST">
@@ -54,7 +54,7 @@
                                 @forelse ($hospitals as $hospital)
                                     <option value="{{ $hospital->id }}" >{{ $hospital->hospital_name }}</option>
                                     @empty
-                                    <option disabled>No Hospital FOund</option>
+                                    <option disabled>No Hospital Found</option>
                                     {{-- <span>No Hospital Found</span> --}}
                                 @endforelse
                             </select>

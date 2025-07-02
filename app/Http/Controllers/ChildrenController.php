@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Children;
 use App\Models\Hospital;
-use App\Models\VaccinationSchedule;
 use Illuminate\Http\Request;
 use App\Models\VaccineRequest;
+use App\Models\VaccinationSchedule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ChildrenController extends Controller
 {
-    public function index(Request $request){
+    // ! for showing childs list
+    public function index(Request $request)
+    {
         $query = Children::with(['parent', 'vaccinationSchedules:id,child_id,status'])
+            ->whereHas('parent', function($query){
+                $query->where('is_approved', true);
+            })
+            ->visibleTo(Auth::user())
             ->latest('created_at');
 
-        // 🧠 Search (only for admin)
         if ($request->filled('search')) {
             $search = $request->input('search');
 
@@ -31,23 +38,30 @@ class ChildrenController extends Controller
         }
 
         $childs = $query->paginate(10)->appends($request->all());
-       return view('dashboard.admin.children.list',compact('childs'));
+
+        return view('dashboard.children.list', compact('childs'));
+    }
+    // ! for edit page
+    public function edit(int $id)
+    {
+        $query = Children::with('vaccinationSchedules:id,child_id,status')
+            ->whereHas('parent', function ($query) {
+                $query->where('is_approved', true);
+            })->visibleTo(Auth::user());
+        $child =  $query->findOrFail($id);
+        return view('dashboard.children.edit', compact('child'));
     }
 
-    public function edit(int $id){
-        $child = Children::with('vaccinationSchedules:id,child_id,status')
-        ->findOrFail($id);
-        return view('dashboard.admin.children.edit', compact('child'));
-    }
-
-    public function update(Request $request, Int $id){
+    // !for update child record
+    public function update(Request $request, Int $id)
+    {
         $request->validate([
             'name' => 'required|string',
             'dob' => 'required|date',
             'gender' => 'required|in:male,female,other',
         ]);
 
-        $child = Children::find($id);
+        $child = Children::visibleTo(Auth::user())->findOrFail($id);
 
         $child->update([
             'name' => $request->name,
@@ -55,41 +69,65 @@ class ChildrenController extends Controller
             'gender' => $request->gender,
         ]);
 
-        // if($child->vaccinationSchedules){
-        //     $child->vaccinationSchedules->update([
-        //         'status' => $request->status,
-        //     ]);
-        // }
         return redirect()->route('child.index')->with('success', 'Child updated successfully.');
     }
-    
-    public function destroy(Int $id){
-        $child = Children::findOrFail($id);
+
+    public function create()
+    {
+        return view('dashboard.children.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'gender' => 'required|in:male,female,other',
+        ],[
+            'dob.required' => 'The date of birth field is required.',
+        ]);
+
+        Children::create([
+            'name' => $request->name,
+            'dob' => $request->dob,
+            'gender' => $request->gender,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('child.index')->with('success', 'Child added successfully.');
+    }
+
+
+    // ! for delete child record
+    public function destroy(Int $id)
+    {
+        $child = Children::visibleTo(Auth::user())->findOrFail($id);
         $child->delete();
         return redirect()->route('child.index')->with('success', 'Child Deleted successfully.');
-
     }
 
     // !Requests
 
-    public function pending(){
+    public function pending()
+    {
         $vacc_req = VaccineRequest::where('status', 'pending')
             ->with([
                 'child:id,name,gender,user_id',
                 'child.parent:id,name',
                 'vaccine:id,name',
                 'hospital:id,hospital_name'
-            ])
-            ->get();
+            ])->paginate(10);
+            
 
         $hospitals = Hospital::all();
 
-        return view('dashboard.admin.children.pending.list', compact('vacc_req', 'hospitals'));
+        return view('dashboard.admin.pending.list', compact('vacc_req', 'hospitals'));
     }
 
     // !Approval
 
-    public function approve(Request $request,$id){
+    public function approve(Request $request, $id)
+    {
         $request->validate([
             'hospital_id' => 'required|exists:hospitals,id',
             'date' => 'required|after_or_equal:today',
@@ -112,11 +150,12 @@ class ChildrenController extends Controller
         return redirect()->route('child.pending.requests')->with('success', 'Vaccine request approved and schedule created.');
     }
 
-    public function reject($id){
+    public function reject($id)
+    {
         $vacc_req = VaccineRequest::findOrFail($id);
         $vacc_req->status = 'rejected';
         $vacc_req->save();
 
         return redirect()->route('child.pending.requests')->with('success', 'Vaccine request rejected.');
-    }   
+    }
 }

@@ -1,7 +1,7 @@
 @extends('dashboard.index')
 
 @section('content')
-<div class="card">
+<div class="card text-bg-dark">
     <h5 class="card-header">Vaccines</h5>
     <div class="d-flex">
         <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('vaccine.index') }}">
@@ -11,7 +11,7 @@
 
             <div class="col-md-auto">
                 <select name="status" class="form-select">
-                    <option value="">All Statuses</option>
+                    <option value="">Filter By</option>
                     <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Available</option>
                     <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Unavailable</option>
                 </select>
@@ -25,7 +25,7 @@
         </form>
     </div>
     <div class="table-responsive text-nowrap">
-      <table class="table table-hover">
+      <table class="table table-hover table-dark ">
         <thead>
           <tr>
             <th>Vaccine Name</th>

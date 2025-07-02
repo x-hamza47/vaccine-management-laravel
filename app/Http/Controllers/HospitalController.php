@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
-use App\Models\VaccinationSchedule;
-use Illuminate\Support\Facades\Auth;
 
 class HospitalController extends Controller
 {
     public function index(Request $request){
-        $query = Hospital::with('user:id,email');
+        $query = Hospital::with('user:id,email')->whereHas('user', function($query) {
+            $query->where('is_approved', true);
+        });
         
         if($request->filled('search')){
             $search = $request->input('search');
@@ -38,6 +38,24 @@ class HospitalController extends Controller
     public function edit(Int $id){
         $hospital = Hospital::findOrFail($id);
         return view('dashboard.admin.hospital.edit', compact('hospital'));
+    }
+
+    public function update(Request $request, Int $id){
+        $hospital = Hospital::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'location' => 'required|string',
+        ]);
+
+        $hospital->update([
+            'hospital_name' => $request->name,
+            'address' => $request->address,
+            'location' => $request->location,
+        ]);
+
+        return redirect()->route('hospital.index')->with('success', 'Hospital updated successfully.');
     }
 
     public function create(){
@@ -73,101 +91,7 @@ class HospitalController extends Controller
     public function destroy(Int $id){
         $hospital = Hospital::findOrFail($id);
         $hospital->delete();
-
         return redirect()->route('hospital.index')->with('success', 'Hospital Deleted successfully.');
     }
-
-    // !Hospital Dashboard
-    public function appointments(Request $request){
-        
-        $hospitalId = Auth::user()->hospital->id;
-
-        $query = VaccinationSchedule::with([
-            'child:id,name', 
-            'vaccine:id,name'])
-            ->where('hospital_id', $hospitalId)->where('status','pending');
-
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-
-            $query->where(function ($q) use ($search) {
-                $q->whereHas('child', function ($childQuery) use ($search) {
-                    $childQuery->where('name', 'like', "%{$search}%");
-                })->orWhereHas('vaccine', function ($vaccineQuery) use ($search) {
-                    $vaccineQuery->where('name', 'like', "%{$search}%");
-                });
-            });  
-        }
-
-        if ($request->filled('sort_by') && in_array($request->sort_by, ['asc', 'desc'])) {
-            $query->orderBy('date', $request->sort_by);
-        } else {
-            $query->latest('date'); 
-        }
-
-        if ($request->filled('status')) {
-            $query->where('status', $request->input('status'));
-        }
-
-        $appointments = $query->latest('date')->paginate(10)->appends($request->all());
-
-
-        return view('dashboard.hospital.list', compact('appointments'));
-        // return $hospitalId;
-    }
-
-    public function updateStatus(Request $request, $id)
-    {
-
-        $request->validate([
-            'status' => 'required|in:pending,completed',
-        ]);
-
-        $schedule = VaccinationSchedule::findOrFail($id);
-
-        $hospitalId = Auth::user()->hospital->id;
-        if($schedule->hospital_id !== $hospitalId){
-            return response()->json(['status' => true, 'message' => 'Hospital id not matched.']);
-        }
-        $schedule->update([
-            'status' => $request->status,
-        ]);
-
-        return response()->json(['status' => true, 'message' => 'Status updated successfully.']);
-    }
-
-    public function history(Request $request){
-        $hospitalId =  Auth::user()->hospital->id;
-
-        $query = VaccinationSchedule::with([
-            'child:id,name',
-            'vaccine:id,name'])
-            ->where('hospital_id', $hospitalId)
-            ->where('status', 'completed');
-
-        if ($request->filled('search')) {
-            $search = $request->input('search');
-
-            $query->where(function ($q) use ($search) {
-                $q->whereHas('child', function ($childQuery) use ($search) {
-                    $childQuery->where('name', 'like', "%{$search}%");
-                })->orWhereHas('vaccine', function ($vaccineQuery) use ($search) {
-                    $vaccineQuery->where('name', 'like', "%{$search}%");
-                });
-            });
-        }
-
-        if ($request->filled('sort_by') && in_array($request->sort_by, ['asc', 'desc'])) {
-            $query->orderBy('date', $request->sort_by);
-        } else {
-            $query->latest('date');
-        }
-
-
-        $appointments = $query->latest('date')->paginate(10)->appends($request->all());
-            // ->latest('date')
-            // ->get();
-
-        return view('dashboard.hospital.history', compact('appointments'));
-    }
+   
 }
