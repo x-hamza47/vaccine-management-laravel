@@ -1,10 +1,32 @@
 @extends('dashboard.index')
 
 @section('content')
-<div class="card">
+<div class="card text-bg-dark">
     <h5 class="card-header">My Vaccine Requests</h5>
+    <div class="d-flex">
+      <form method="GET" class="row g-3 mb-4 px-4" action="{{ route('parent.requests') }}">
+          <div class="col-auto">
+              <input type="text" name="search" class="form-control" placeholder="Search..." value="{{ request('search') }}">
+          </div>
+          <div class="col-md-auto">
+            <select name="status" class="form-select">
+                <option value="">All Statuses</option>
+                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved
+                </option>
+                <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
+            </select>
+        </div>
+          <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+          <div class="col-auto">
+              <a href="{{ route('parent.requests') }}" class="btn btn-outline-secondary">Reset</a>
+          </div>
+      </form>
+  </div>
     <div class="table-responsive text-nowrap">
-      <table class="table table-hover">
+      <table class="table table-hover table-dark">
         <thead>
           <tr>
             <th>Child Name</th>
@@ -42,6 +64,9 @@
 
         </tbody>
       </table>
+      <div class="mt-3 px-4">
+        {{ $requests->links() }}
+    </div>
     </div>
   </div>
     

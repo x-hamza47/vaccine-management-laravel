@@ -1,6 +1,6 @@
 <!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar">
-    <div class="layout-container">
+<div class="layout-wrapper layout-content-navbar ">
+    <div class="layout-container bg-black">
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
@@ -73,7 +73,13 @@
                         </a>
                     </li>
                     {{-- ! Hospital --}}
-                    <li class="menu-item {{ Route::is('hospital.*') ? 'open active' : '' }}">
+                    <li class="menu-item {{ Route::is('hospital.*','hospital.index') ? 'active' : '' }}">
+                        <a href="{{ route('hospital.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-clinic"></i>
+                            <div data-i18n="List of Hospitals">Hospitals</div>
+                        </a>
+                    </li>
+                    {{-- <li class="menu-item {{ Route::is('hospital') ? 'open active' : '' }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-clinic"></i>
                             <div data-i18n="Hospitals">Hospitals</div>
@@ -90,7 +96,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     {{-- ! approvals --}}
                     <li class="menu-item {{ Route::is('user.approval.index') ? 'active' : '' }}">
                         <a href="{{ route('user.approval.index') }}" class="menu-link">
@@ -104,15 +110,15 @@
                 {{-- Info: Hospital --}}
                 @can('hospital-view')
                     {{-- ! appointments --}}
-                    <li class="menu-item {{ Route::is('hospital.appointments') ? 'active' : '' }}">
-                        <a href="{{ route('hospital.appointments') }}" class="menu-link">
+                    <li class="menu-item {{ Route::is('vaccination.index') ? 'active' : '' }}">
+                        <a href="{{ route('vaccination.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-calendar-check"></i>
                             <div data-i18n="update">View Appointments</div>
                         </a>
                     </li>
                     {{-- ! history --}}
-                    <li class="menu-item {{ Route::is('hospital.appointments.history') ? 'active' : '' }}">
-                        <a href="{{ route('hospital.appointments.history') }}" class="menu-link">
+                    <li class="menu-item {{ Route::is('bookings.index') ? 'active' : '' }}">
+                        <a href="{{ route('bookings.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-history"></i>
                             <div data-i18n="update">Appointment History</div>
                         </a>
@@ -123,27 +129,16 @@
                 {{-- Info: Parent --}}
                 @can('parent-view')
                     {{-- ! Children --}}
-                    <li class="menu-item {{ Route::is('parent.child.*') ? 'open active' : '' }}">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <li class="menu-item {{ Route::is('child.index') ? 'active' : '' }}">
+                        <a href="{{ route('child.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-child"></i>
-                            <div data-i18n="Childrens">My Children</div>
+                            <div data-i18n="All Child Details">My Children</div>
                         </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item {{ Route::is('parent.child.index') ? 'active' : '' }}">
-                                <a href="{{ route('parent.child.index') }}" class="menu-link">
-                                    <div data-i18n="All Child Details">All Childs</div>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ Route::is('parent.child.create') ? 'active' : '' }}">
-                                <a href="{{ route('parent.child.create') }}" class="menu-link">
-                                    <div data-i18n="Add Child">Add Child</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
+                    
                     {{-- ! vaccination schedules --}}
-                    <li class="menu-item {{ Route::is('parent.schedule.index') ? 'active' : '' }}">
-                        <a href="{{ route('parent.schedule.index') }}" class="menu-link">
+                    <li class="menu-item {{ Route::is('vaccination.index') ? 'active' : '' }}">
+                        <a href="{{ route('vaccination.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-calendar"></i>
                             <div data-i18n="my-child">Vaccination Schedule</div>
                         </a>
@@ -164,8 +159,8 @@
                         </a>
                     </li>
                     {{-- ! history --}}
-                    <li class="menu-item {{ Route::is('parent.history') ? 'active' : '' }}">
-                        <a href="{{ route('parent.history') }}" class="menu-link">
+                    <li class="menu-item {{ Route::is('bookings.index') ? 'active' : '' }}">
+                        <a href="{{ route('bookings.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-history"></i>
                             <div data-i18n="update">Vaccination History</div>
                         </a>
@@ -207,7 +202,7 @@
         <div class="layout-page">
             <!-- Navbar -->
 
-            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            <nav class="layout-navbar bg-dark container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                 id="layout-navbar">
                 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -221,12 +216,16 @@
                         <div class="nav-item d-flex align-items-center">
                             <i class="bx bx-search fs-4 lh-0"></i>
                             <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-                                aria-label="Search..." />
+                            aria-label="Search..." />
                         </div>
                     </div> --}}
                     <!-- /Search -->
-
+                    
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
+                        @can('parent-view')
+    
+                        <a href="{{ route('parent.appointments') }}" class="btn btn-primary rounded-pill">Make an Appointment</a>
+                        @endcan
                         <!-- Place this tag where you want the button to render. -->
                         {{-- <li class="nav-item lh-1 me-3">
                             <a class="github-button"

@@ -11,7 +11,7 @@
                 {{-- <small class="text-muted float-end">Default label</small> --}}
             </div>
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{{ route('hospital.update', $hospital->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     {{-- ! Name --}}
@@ -32,7 +32,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="basic-default-address">Location</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="basic-default-address" placeholder="e.g. Lahore, Karachi, Islamabad" name="address" value="{{ $hospital->location }}" />
+                            <input type="text" class="form-control" id="basic-default-address" placeholder="e.g. Lahore, Karachi, Islamabad" name="location" value="{{ $hospital->location }}" />
                         </div>
                     </div>
 

@@ -24,4 +24,8 @@ class VaccineRequest extends Model
     {
         return $this->belongsTo(Hospital::class);
     }
+    public function getFormattedDateAttribute()
+    {
+        return \Carbon\Carbon::parse($this->preferred_date)->format('F j, Y');
+    }
 }

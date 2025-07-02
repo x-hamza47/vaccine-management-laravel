@@ -1,5 +1,5 @@
 @include('dashboard.partials.header')
-
+@include('dashboard.partials.alert')
 {{-- * Sidebar --}}
 @if (Auth::check())
     @include('dashboard.layout.sidebar')
