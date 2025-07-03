@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-3 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">Total Children</div>
                 <h3 class="d-inline-block ">{{ $totalChildren }}</h3>
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">Hospitals</div>
                 <h3 class="d-inline-block ">{{ count($hospitals ?? []) }}</h3>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">Vaccines</div>
                 <h3 class="d-inline-block ">{{ $totalVaccines }}</h3>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">Appointment Request</div>
                 <h3>{{ count($pendingRequests ?? []) }}</h3>
@@ -51,10 +51,10 @@
 {{-- Pending Requests Table --}}
 <div class="row ">
     <div class="col-lg-9 col-md-6 col-6 mb-4 ">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <h5 class="card-header">Recent Appointment Requests</h5>
             <div class="table-responsive text-nowrap">
-                <table class="table table-dark">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th>Child</th>
@@ -119,7 +119,7 @@
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-6 mb-4 h-100">
-        <div class="card text-bg-dark mb-4">
+        <div class="card  mb-4">
             <div class="card-body">
                 <div class="card-title">User Request</div>
                 <h3>{{ count($userRequests ?? []) }}</h3>
@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div class="card text-bg-dark ">
+        <div class="card  ">
             <div class="card-body">
                 <div class="card-title">Vaccinations Completed Today</div>
                 <h3>{{ $completedToday }}</h3>
@@ -142,7 +142,7 @@
 {{-- User Approvals --}}
 <div class="row ">
     <div class="col-lg-3 col-md-6 col-6 mb-4 ">
-        <div class="card text-bg-dark mb-4">
+        <div class="card  mb-4">
             <div class="card-body">
                 <div class="card-title">Total Users</div>
                 <h3>{{ $totalUsers }}</h3>
@@ -150,10 +150,10 @@
         </div>
     </div>
     <div class="col-lg-9 col-md-6 col-6 mb-4 ">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <h5 class="card-header">Recent User Requests</h5>
             <div class="table-responsive text-nowrap">
-                <table class="table table-hover table-dark">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Name</th>
