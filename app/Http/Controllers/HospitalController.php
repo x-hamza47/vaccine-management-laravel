@@ -90,6 +90,7 @@ class HospitalController extends Controller
     
     public function destroy(Int $id){
         $hospital = Hospital::findOrFail($id);
+        $hospital->user()->delete();
         $hospital->delete();
         return redirect()->route('hospital.index')->with('success', 'Hospital Deleted successfully.');
     }

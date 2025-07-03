@@ -15,20 +15,30 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // $this->call([
-        //     AdminSeeder::class,
-        // ]);
+        $this->call([
+            AdminSeeder::class,
+            VaccineSeeder::class,
+        ]);
 
         // !childrens
-        // User::factory()
-        //     ->count(3)
-        //     ->hasChildren(5)
-        //     ->create();
-
+        User::factory()
+        ->count(10)
+        ->hasChildren(5)
+        ->create([
+            'role' => 'parent',
+        ]);
+        
         // ! Hospitals
         User::factory()
-            ->count(1)
+            ->count(10)
             ->hasHospital()
-            ->create();
+            ->create([
+                'role' => 'hospital',
+            ]);
+
+        $this->call([
+            VaccineRequestSeeder::class,
+            VaccineScheduleSeeder::class,
+        ]);
     }
 }

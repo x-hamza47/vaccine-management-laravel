@@ -79,24 +79,7 @@
                             <div data-i18n="List of Hospitals">Hospitals</div>
                         </a>
                     </li>
-                    {{-- <li class="menu-item {{ Route::is('hospital') ? 'open active' : '' }}">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-clinic"></i>
-                            <div data-i18n="Hospitals">Hospitals</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item {{ Route::is('hospital.create') ? 'active' : '' }}">
-                                <a href="{{ route('hospital.create') }}" class="menu-link">
-                                    <div data-i18n="Add Hospital">Add Hospital</div>
-                                </a>
-                            </li>
-                            <li class="menu-item {{ Route::is('hospital.index') ? 'active' : '' }}">
-                                <a href="{{ route('hospital.index') }}" class="menu-link">
-                                    <div data-i18n="List of Hospitals">List of Hospitals</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> --}}
+
                     {{-- ! approvals --}}
                     <li class="menu-item {{ Route::is('user.approval.index') ? 'active' : '' }}">
                         <a href="{{ route('user.approval.index') }}" class="menu-link">
@@ -169,16 +152,16 @@
                 {{-- Info: Parent end --}}
 
 
-                {{-- <li class="menu-header small text-uppercase">
+                <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">Account</span>
-                </li> --}}
+                </li>
                 {{-- ! Profile --}}
-                {{-- <li class="menu-item">
-                    <a href="" class="menu-link">
+                <li class="menu-item">
+                    <a href="{{ route('user.profile.index') }}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-user-circle"></i>
                         <div data-i18n="Profile">Profile</div>
                     </a>
-                </li> --}}
+                </li>
                 {{-- ! Settings --}}
                 {{-- <li class="menu-item">
                     <a href="" class="menu-link">
@@ -217,28 +200,12 @@
                             <small class="text-muted">({{ ucfirst(auth()->user()->role) }})</small>
                         </span>
                     @endauth
-                    <!-- Search -->
-                    {{-- <div class="navbar-nav align-items-center">
-                        <div class="nav-item d-flex align-items-center">
-                            <i class="bx bx-search fs-4 lh-0"></i>
-                            <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-                            aria-label="Search..." />
-                        </div>
-                    </div> --}}
-                    <!-- /Search -->
 
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         @can('parent-view')
                             <a href="{{ route('parent.appointments') }}" class="btn btn-primary rounded-pill">Make an
                                 Appointment</a>
                         @endcan
-                        <!-- Place this tag where you want the button to render. -->
-                        {{-- <li class="nav-item lh-1 me-3">
-                            <a class="github-button"
-                                href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                data-icon="octicon-star" data-size="large" data-show-count="true"
-                                aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                        </li> --}}
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -273,7 +240,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('user.profile.index') }}">
                                         <i class="bx bx-user me-2"></i>
                                         <span class="align-middle">My Profile</span>
                                     </a>

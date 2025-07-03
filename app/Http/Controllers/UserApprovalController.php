@@ -29,7 +29,7 @@ class UserApprovalController extends Controller
     public function approve(User $user){
         $user->update(['is_approved' => true]);
         return redirect()
-        ->route('user.approval.index')
+        ->back()
         ->with('success', 'User approved successfully.');
     }
 
