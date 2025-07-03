@@ -13,19 +13,22 @@ class VaccineSeeder extends Seeder
      */
     public function run(): void
     {
-        // $vaccines = ['Polio', 'BCG', 'Hepatitis B', 'MMR'];
         $vaccines = [
-            'DTP Vaccine',
-            'Hib Vaccine',
-            'Rotavirus Vaccine',
-            'Pneumococcal Vaccine',
-            'Chickenpox Vaccine',
-            'Hepatitis A Vaccine',
-            'Typhoid Vaccine',
-            'Influenza Vaccine',
-            'COVID-19 Vaccine',
-            'HPV Vaccine',
-            'JE Vaccine'
+            'Polio',
+            'BCG',
+            'Hepatitis B',
+            'MMR',
+            'DTP',
+            'Hib',
+            'Rotavirus',
+            'Pneumococcal',
+            'Chickenpox',
+            'Hepatitis A',
+            'Typhoid',
+            'Influenza',
+            'COVID-19',
+            'HPV',
+            'JE'
         ];
 
         foreach($vaccines as $vaccine){

@@ -83,6 +83,77 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
+    public function updateUser(Request $request, Int $id)
+    {
+        if (Auth::id() !== $id) {
+            abort(403);
+        }
+        $user = User::findOrFail($id);
+
+            $request->validate([
+                'name' => 'required|string|max:50',
+                'email' => 'required|email|unique:users,email,' . $id,
+            ]);
+
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+        if (Auth::user()->role == 'hospital' && $user->hospital) {
+
+                $request->validate([
+                    'hospital_name' => 'required|string|max:100',
+                    'address' => 'required|string|max:255',
+                    'location' => 'required|string|max:100',
+                ]);
+
+                $user->hospital()->update([
+                    'hospital_name' => $request->hospital_name,
+                    'address' => $request->address,
+                    'location' => $request->location,
+                ]);
+            
+        }
+        return redirect()->route('user.profile.index')->with('success', 'Profile updated successfully.');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return view('dashboard.auth.login');
+    }
+
+    public function destroy(Request $request, Int $id){
+        if (!$request->has('confirm_delete')) {
+            return redirect()->back()->with('error', 'You must confirm account deletion.');
+        }
+
+        if (Auth::id() !==  $id) {
+            abort(403);
+        }
+        $user = User::findOrFail($id);
+        Auth::logout();
+
+        $user->delete();
+
+        return redirect()->route('login')->with('success', 'Your account has been deleted.');
+    }
+    public function showProfile()
+    {
+        /**
+         * @var \App\Models\User 
+         */
+        $user = Auth::user();
+
+        if ($user->role == 'parent') {
+            $user->load('children.vaccinationSchedules');
+        } elseif ($user->role == 'hospital') {
+            $user->load('hospital');
+        }
+        return view('dashboard.account.profile', compact('user'));
+    }
+
     public function dashboard()
     {
         $user = Auth::user();
@@ -190,11 +261,5 @@ class UserController extends Controller
             ));
         }
         return view('dashboard.dashboard');
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return view('dashboard.auth.login');
     }
 }
