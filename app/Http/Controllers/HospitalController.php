@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 class HospitalController extends Controller
 {
     public function index(Request $request){
-        $query = Hospital::with('user:id,email')->whereHas('user', function($query) {
-            $query->where('is_approved', true);
-        });
+        $query = Hospital::with('user:id,email')
+            ->join('users', 'hospitals.user_id', '=', 'users.id')
+            ->select('hospitals.*')
+            ->where('users.is_approved', true)
+            ->orderBy('users.updated_at', 'desc');;
         
         if($request->filled('search')){
             $search = $request->input('search');
@@ -26,10 +28,10 @@ class HospitalController extends Controller
             if($request->input('sort_by') == 'name'){
                 $query->orderby('hospital_name','asc');
             }elseif($request->input('sort_by') == 'date'){
-                $query->orderBy('created_at', 'desc');
+                $query->orderBy('users.updated_at', 'desc');
             }
         }else {
-            $query->latest('created_at');
+            $query->orderBy('users.created_at','asc');
         }
         $hospitals = $query->paginate(10)->appends($request->all());
         return view('dashboard.admin.hospital.list', compact('hospitals'));

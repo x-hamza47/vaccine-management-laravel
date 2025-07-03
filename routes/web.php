@@ -78,6 +78,9 @@ Route::prefix('dashboard')->middleware(['auth','IsApproved'])->group(function(){
                 Route::prefix('user-approvals')->group(function(){
                     Route::get('/', 'index')->name('user.approval.index');
                     Route::patch('/{user}/approve', 'approve')->name('user.approval.approve');
+                    Route::put('bulk-approve',  'bulkApprove')->name('user.approval.bulkApprove');
+                    Route::delete('bulk-delete',  'bulkDelete')->name('user.approval.bulkDelete');
+
                     Route::delete('/{user}/reject', 'reject')->name('user.approval.reject');
                 });
             });

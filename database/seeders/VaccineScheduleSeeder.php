@@ -18,10 +18,10 @@ class VaccineScheduleSeeder extends Seeder
     {
         $childrens = Children::all();
         $hospitals = Hospital::all();
-        $hospital = optional($hospitals->random())->id ?? 1;
         $vaccines = Vaccine::where('available', true)->get();
-
+        
         foreach ($childrens as $child) {
+            $hospital = $hospitals->random()->id ?? 1;
             $vaccine = $vaccines->random();
 
             VaccinationSchedule::create([
