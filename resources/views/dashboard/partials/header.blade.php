@@ -14,12 +14,16 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard - Analytics | VMS</title>
+    <title>Dashboard @yield('title')</title>
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ asset('assets/img/site.webmanifest') }}">
+  
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-4 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">My Children</div>
                 <h3 class="d-inline-block ">{{ count($childs) }}</h3>
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">Vaccine Requests</div>
                 <h3 class="d-inline-block ">{{ $totalRequests }}</h3>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-6 col-6 mb-4">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <div class="card-body">
                 <div class="card-title">Pending Appointments</div>
                 <h3 class="d-inline-block ">{{ $pendingAppointments}}</h3>
@@ -37,10 +37,10 @@
 
 <div class="row ">
     <div class="col-lg-9 col-md-6 col-6 mb-4 ">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <h5 class="card-header">Recent Requests</h5>
             <div class="table-responsive text-nowrap">
-                <table class="table table-hover table-dark">
+                <table class="table table-hover ">
                     <thead>
                       <tr>
                         <th>Child Name</th>
@@ -91,10 +91,10 @@
 
 <div class="row ">
     <div class="col-lg-9 col-md-6 col-6 mb-4 ">
-        <div class="card text-bg-dark">
+        <div class="card ">
             <h5 class="card-header">Upcoming Appointments</h5>
             <div class="table-responsive text-nowrap">
-                <table class="table table-hover table-dark">
+                <table class="table table-hover ">
                     <thead>
                         <tr>
                             <th>Child Name</th>

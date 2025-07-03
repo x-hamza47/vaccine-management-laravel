@@ -1,9 +1,5 @@
 @extends('dashboard.index')
 
-{{-- @push('styles')
-    <link rel="stylesheet" href="{{ asset('dashboard-assets/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-@endpush --}}
-
 {{-- ! Content --}}
 @section('content')
 
@@ -21,6 +17,7 @@
     
 @endsection
 {{-- ! Content End --}}
+
 @can('hospital-view')
 @push('scripts')
 <script>
@@ -75,7 +72,4 @@
 </script>
 @endpush
 @endcan
-{{-- @push('scripts')
-    <script src="{{ asset('dashboard-assets/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/assets/js/dashboards-analytics.js') }}"></script>
-@endpush --}}
+

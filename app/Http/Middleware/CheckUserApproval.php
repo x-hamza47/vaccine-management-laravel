@@ -18,7 +18,7 @@ class CheckUserApproval
     {
         if(!Auth::user()->is_approved){
             Auth::logout();
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Your account is not approved yet. Please wait for admin approval.');
         }
         return $next($request);
     }

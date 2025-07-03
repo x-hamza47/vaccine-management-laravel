@@ -4,16 +4,16 @@
         <!-- Menu -->
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-            <div class="app-brand demo">
-                <a href="index.html" class="app-brand-link">
+            <div class="app-brand demo bg-dark mb-4">
+                <a href="index.html" class="app-brand-link ">
                     <span class="app-brand-logo demo w-100 d-flex align-items-center">
-                        
-                            <!-- Uncomment the line below if you also wish to use an image logo -->
-                           <img src="{{ asset('assets/img/logo.png') }}" alt="" style="width: 40px;height: 40px;">
-                            {{-- <h2 class="sitename">Medilab</h2> --}}
-                         
-                  
-                            <span class="app-brand-text demo menu-text fw-bolder ms-2">Medilab</span>
+
+                        <!-- Uncomment the line below if you also wish to use an image logo -->
+                        <img src="{{ asset('assets/img/android-chrome-512x512.png') }}" alt="" style="width: 40px;height: 40px;">
+                        {{-- <h2 class="sitename">Medilab</h2> --}}
+
+
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2 text-white">Medilab</span>
                     </span>
                 </a>
 
@@ -73,7 +73,7 @@
                         </a>
                     </li>
                     {{-- ! Hospital --}}
-                    <li class="menu-item {{ Route::is('hospital.*','hospital.index') ? 'active' : '' }}">
+                    <li class="menu-item {{ Route::is('hospital.*', 'hospital.index') ? 'active' : '' }}">
                         <a href="{{ route('hospital.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-clinic"></i>
                             <div data-i18n="List of Hospitals">Hospitals</div>
@@ -135,7 +135,7 @@
                             <div data-i18n="All Child Details">My Children</div>
                         </a>
                     </li>
-                    
+
                     {{-- ! vaccination schedules --}}
                     <li class="menu-item {{ Route::is('vaccination.index') ? 'active' : '' }}">
                         <a href="{{ route('vaccination.index') }}" class="menu-link">
@@ -211,6 +211,12 @@
                 </div>
 
                 <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                    @auth
+                        <span >
+                            👋 Welcome, <strong>{{ auth()->user()->name }}</strong>
+                            <small class="text-muted">({{ ucfirst(auth()->user()->role) }})</small>
+                        </span>
+                    @endauth
                     <!-- Search -->
                     {{-- <div class="navbar-nav align-items-center">
                         <div class="nav-item d-flex align-items-center">
@@ -220,11 +226,11 @@
                         </div>
                     </div> --}}
                     <!-- /Search -->
-                    
+
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         @can('parent-view')
-    
-                        <a href="{{ route('parent.appointments') }}" class="btn btn-primary rounded-pill">Make an Appointment</a>
+                            <a href="{{ route('parent.appointments') }}" class="btn btn-primary rounded-pill">Make an
+                                Appointment</a>
                         @endcan
                         <!-- Place this tag where you want the button to render. -->
                         {{-- <li class="nav-item lh-1 me-3">
@@ -249,7 +255,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="../assets/img/avatars/1.png" alt
+                                                    <img src="{{ asset('dashboard-assets/assets/img/avatars/1.png') }}" alt
                                                         class="w-px-40 h-auto rounded-circle" />
                                                 </div>
                                             </div>

@@ -4,13 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Medilab Bootstrap Template</title>
+  <title>Medilab </title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
+<link rel="manifest" href="{{ asset('assets/img/site.webmanifest') }}">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -28,13 +31,6 @@
   <!-- Main CSS File -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Medilab
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">
@@ -61,7 +57,7 @@
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
-         <img src="{{ asset('assets/img/logo.png') }}" alt="">
+         <img src="{{ asset('assets/img/android-chrome-512x512.png') }}" alt="">
           <h1 class="sitename">Medilab</h1>
         </a>
 
@@ -105,7 +101,7 @@
 
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
           <h2>WELCOME TO MEDILAB</h2>
-          <p>We are team of talented designers making websites with Bootstrap</p>
+          <p>Protecting communities through organized and accessible vaccination services.</p>
         </div><!-- End Welcome -->
 
         <div class="content row gy-4">
@@ -113,8 +109,7 @@
             <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
               <h3>Why Choose Medilab?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                Medilab helps parents, hospitals, and administrators streamline the vaccination process. From scheduling appointments to tracking doses and reminders — we ensure no child misses essential protection.
               </p>
               <div class="text-center">
                 <a href="#about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
@@ -129,24 +124,24 @@
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
                     <i class="bi bi-clipboard-data"></i>
-                    <h4>Corporis voluptates officia eiusmod</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <h4>Smart Vaccination Scheduling</h4>
+                    <p>Effortlessly book and manage vaccination appointments with real-time updates and notifications.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
                     <i class="bi bi-gem"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                    <h4>Secure Health Records</h4>
+                    <p>Maintain safe and centralized vaccine history for each child, accessible by parents and hospitals.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
                     <i class="bi bi-inboxes"></i>
-                    <h4>Labore consequatur incidid dolore</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                    <h4>Hospital & Parent Portals</h4>
+                    <p>Dedicated dashboards for hospitals and parents to manage and track appointments, vaccines, and requests.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
@@ -174,28 +169,28 @@
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
             <h3>About Us</h3>
             <p>
-              Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis veritatis asperiores placeat.
+              Medilab is a digital platform designed to streamline the vaccination process for hospitals, parents, and administrators. Our goal is to ensure timely and accessible vaccinations by providing a centralized system for appointment scheduling, vaccine tracking, and communication.
             </p>
             <ul>
               <li>
                 <i class="fa-solid fa-vial-circle-check"></i>
                 <div>
-                  <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                  <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
+                  <h5>Trusted Vaccination Records</h5>
+                  <p>Securely manage vaccination history for every child with real-time updates and accessible reports.</p>
                 </div>
               </li>
               <li>
                 <i class="fa-solid fa-pump-medical"></i>
                 <div>
-                  <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                  <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
+                  <h5>Simplified Scheduling</h5>
+                  <p>Schedule and manage appointments easily through smart reminders and an intuitive calendar system.</p>
                 </div>
               </li>
               <li>
                 <i class="fa-solid fa-heart-circle-xmark"></i>
                 <div>
-                  <h5>Voluptatem et qui exercitationem</h5>
-                  <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
+                  <h5>Support for Hospitals & Families</h5>
+                  <p>Empowering both healthcare providers and families through dedicated dashboards and real-time status tracking.</p>
                 </div>
               </li>
             </ul>
@@ -215,34 +210,34 @@
         <div class="row gy-4">
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="fa-solid fa-user-doctor"></i>
+            <i class="fa-solid fa-syringe"></i>
             <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Doctors</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ \App\Models\VaccinationSchedule::where('status','completed')->count() }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Vaccines Administered</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
             <i class="fa-regular fa-hospital"></i>
             <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Departments</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ \App\Models\Hospital::count() }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Hospitals</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="fas fa-flask"></i>
+            <i class="fa-solid fa-child"></i>
             <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Research Labs</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ \App\Models\Children::count() }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Children Registered</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="fas fa-award"></i>
+            <i class="fa-solid fa-capsules"></i>
             <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Awards</p>
+              <span data-purecounter-start="0" data-purecounter-end="{{ \App\Models\Vaccine::where('available', true)->count() }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Vaccine Types Available</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -258,7 +253,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Empowering families and healthcare providers with smart, secure, and accessible vaccination solutions.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -268,24 +263,24 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item  position-relative">
               <div class="icon">
-                <i class="fas fa-heartbeat"></i>
+                <i class="fas fa-calendar-check"></i>
               </div>
               <a href="#" class="stretched-link">
-                <h3>Nesciunt Mete</h3>
+                <h3>Online Appointment Booking</h3>
               </a>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+              <p>Schedule vaccination appointments easily from anywhere, at any time. Our system helps parents and hospitals coordinate seamlessly.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="fas fa-pills"></i>
+                <i class="fas fa-notes-medical"></i>
               </div>
               <a href="#" class="stretched-link">
-                <h3>Eosle Commodi</h3>
+                <h3>Digital Vaccination Records</h3>
               </a>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+              <p>Maintain secure, centralized records for each child's vaccination history — accessible by parents and healthcare providers.</p>
             </div>
           </div><!-- End Service Item -->
 
@@ -295,21 +290,21 @@
                 <i class="fas fa-hospital-user"></i>
               </div>
               <a href="#" class="stretched-link">
-                <h3>Ledo Markt</h3>
+                <h3>Hospital Management Dashboard</h3>
               </a>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+              <p>Hospitals can view upcoming appointments, manage vaccine inventory, and monitor patient data through a real-time dashboard.</p>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="fas fa-dna"></i>
+                <i class="fas fa-bell"></i>
               </div>
               <a href="#" class="stretched-link">
-                <h3>Asperiores Commodit</h3>
+                <h3> Automated SMS & Email Reminders</h3>
               </a>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+              <p>Never miss a vaccination date again. Our system sends timely reminders to parents for upcoming appointments.</p>
               <a href="#" class="stretched-link"></a>
             </div>
           </div><!-- End Service Item -->
@@ -317,12 +312,12 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="fas fa-wheelchair"></i>
+                <i class="fas fa-child"></i>
               </div>
               <a href="#" class="stretched-link">
-                <h3>Velit Doloremque</h3>
+                <h3> Child Profile & Health Tracking</h3>
               </a>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+              <p>Parents can manage profiles for multiple children, view past and upcoming vaccines, and track health records.</p>
               <a href="#" class="stretched-link"></a>
             </div>
           </div><!-- End Service Item -->
@@ -330,12 +325,12 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="fas fa-notes-medical"></i>
+                <i class="fas fa-capsules"></i>
               </div>
               <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
+                <h3>Vaccine Inventory Management</h3>
               </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+              <p>Efficiently manage and monitor vaccine stocks with alerts for low inventory and expired batches.</p>
               <a href="#" class="stretched-link"></a>
             </div>
           </div><!-- End Service Item -->
@@ -352,7 +347,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Appointment</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Book, track, and manage your child's vaccination appointments with ease and confidence.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -417,8 +412,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Departments</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Our Focus Areas</h2>
+        <p>Key areas we cover through our digital vaccination system to protect every life.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -427,19 +422,19 @@
           <div class="col-lg-3">
             <ul class="nav nav-tabs flex-column">
               <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#departments-tab-1">Cardiology</a>
+                <a class="nav-link active show" data-bs-toggle="tab" href="#departments-tab-1">Pediatrics</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-2">Neurology</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-2">Maternal Care</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-3">Hepatology</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-3">Outreach Units</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-4">Pediatrics</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-4">Immunization Records</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-5">Eye Care</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#departments-tab-5">Public Awareness</a>
               </li>
             </ul>
           </div>
@@ -448,9 +443,8 @@
               <div class="tab-pane active show" id="departments-tab-1">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Cardiology</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                    <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                    <h3>Pediatrics</h3>
+                    <p>Our platform ensures that children from birth through adolescence receive timely and complete vaccinations. We help parents track their child’s immunization schedule, receive reminders, and access digital vaccination records. Hospitals and clinics can monitor coverage and manage upcoming pediatric appointments with ease.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="{{ asset('assets/img/departments-1.jpg') }}" alt="" class="img-fluid">
@@ -460,9 +454,8 @@
               <div class="tab-pane" id="departments-tab-2">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Et blanditiis nemo veritatis excepturi</h3>
-                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
-                    <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
+                    <h3>Maternal Care</h3>
+                    <p>Vaccinations during pregnancy play a vital role in protecting both mother and child. VaxCare supports healthcare providers in tracking and managing essential maternal vaccines such as Tetanus, Influenza, and Hepatitis B. Our system allows hospitals to schedule, notify, and maintain maternal vaccine records efficiently.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="{{ asset('assets/img/departments-2.jpg') }}" alt="" class="img-fluid">
@@ -472,9 +465,8 @@
               <div class="tab-pane" id="departments-tab-3">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-                    <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-                    <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
+                    <h3>Outreach Units</h3>
+                    <p>To bridge the gap in healthcare access, we support mobile outreach programs that deliver vaccines to remote, rural, or underserved communities. These field units can log vaccinations on-site using our digital system, ensuring accurate data tracking and expanded vaccine coverage across regions.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="{{ asset('assets/img/departments-3.jpg') }}" alt="" class="img-fluid">
@@ -484,9 +476,8 @@
               <div class="tab-pane" id="departments-tab-4">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                    <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
-                    <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
+                    <h3>Immunization Records</h3>
+                    <p>Every vaccination given is stored securely in our centralized database. Parents can view their child’s full immunization history anytime, and hospitals can verify records during visits. This reduces paperwork, avoids duplicate vaccines, and supports compliance with national health programs.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="{{ asset('assets/img/departments-4.jpg') }}" alt="" class="img-fluid">
@@ -496,9 +487,8 @@
               <div class="tab-pane" id="departments-tab-5">
                 <div class="row">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                    <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                    <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                    <h3>Public Awareness</h3>
+                    <p>Educating the public is critical for vaccination success. VaxCare integrates tools for hospitals and health agencies to run awareness campaigns, share informative content, and send reminders via SMS or email. This ensures families stay informed about upcoming vaccines, benefits, and timelines.</p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
                     <img src="{{ asset('assets/img/departments-5.jpg') }}" alt="" class="img-fluid">
@@ -519,7 +509,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Doctors</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Meet the dedicated professionals who ensure safe and timely vaccinations for every child.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -530,9 +520,9 @@
             <div class="team-member d-flex align-items-start">
               <div class="pic"><img src="{{ asset('assets/img/doctors/doctors-1.jpg') }}" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Medical Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <h4>Dr. Asad Siddiqui</h4>
+                <span>Chief Pediatrician</span>
+                <p>With over 15 years of experience in child healthcare, Dr. Asad leads our vaccination program to ensure every child receives timely immunization.</p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -547,9 +537,9 @@
             <div class="team-member d-flex align-items-start">
               <div class="pic"><img src="{{ asset('assets/img/doctors/doctors-2.jpg') }}" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Anesthesiologist</span>
-                <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                <h4> Dr. Farah Qureshi</h4>
+                <span>Immunologist</span>
+                <p>Specializing in vaccine-preventable diseases, Dr. Farah ensures our protocols are aligned with global immunization standards and practices.</p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -564,9 +554,9 @@
             <div class="team-member d-flex align-items-start">
               <div class="pic"><img src="{{ asset('assets/img/doctors/doctors-3.jpg') }}" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Cardiology</span>
-                <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+                <h4>Dr. Aslam</h4>
+                <span>Family Physician</span>
+                <p>Dr. Aslam works closely with parents, providing guidance and support throughout their child's vaccination journey.</p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -581,9 +571,9 @@
             <div class="team-member d-flex align-items-start">
               <div class="pic"><img src="{{ asset('assets/img/doctors/doctors-4.jp') }}g" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Neurosurgeon</span>
-                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                <h4>Dr. Kanwal</h4>
+                <span>Public Health Advisor</span>
+                <p>Dr. Kanwal supports our outreach and awareness campaigns, ensuring vulnerable communities have access to essential vaccines.</p>
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -606,7 +596,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Frequently Asked Questions</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Find quick answers to common questions about vaccination bookings, records, and system usage.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -618,49 +608,33 @@
             <div class="faq-container">
 
               <div class="faq-item faq-active">
-                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                <h3>How can I book a vaccination appointment for my child?</h3>
                 <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
+                  <p>You can book an appointment by logging into your parent account and selecting an available date and time from the hospital's schedule. Once booked, you will receive confirmation via SMS and email.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
+                <h3>Can I view my child’s vaccination history online?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                  <p>Yes, all registered parents can access their child’s complete vaccination records from the dashboard, including completed doses and upcoming vaccines.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                <h3>What happens if I miss a scheduled appointment?</h3>
                 <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                  <p>If you miss an appointment, you can reschedule it from your account. You will also receive automated reminders to avoid missing important future doses.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
 
               <div class="faq-item">
-                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
+                <h3>How do hospitals update the vaccination status?</h3>
                 <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
-                <div class="faq-content">
-                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
-                <div class="faq-content">
-                  <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
+                  <p>Hospitals have dedicated dashboards to manage appointments. After administering a vaccine, the hospital staff marks it as "completed," and the system updates the child's record in real-time.</p>
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
@@ -685,8 +659,7 @@
           <div class="col-lg-5 info" data-aos="fade-up" data-aos-delay="100">
             <h3>Testimonials</h3>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+              Hear from parents, healthcare workers, and clinic staff who’ve used our system to simplify vaccination management and ensure timely care.
             </p>
           </div>
 
@@ -715,8 +688,8 @@
                     <div class="d-flex">
                       <img src="{{ asset('assets/img/testimonials/testimonials-1.jpg') }}" class="testimonial-img flex-shrink-0" alt="">
                       <div>
-                        <h3>Saul Goodman</h3>
-                        <h4>Ceo &amp; Founder</h4>
+                        <h3>Dr. Bilal Khan </h3>
+                        <h4>General Practitioner</h4>
                         <div class="stars">
                           <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </div>
@@ -724,7 +697,7 @@
                     </div>
                     <p>
                       <i class="bi bi-quote quote-icon-left"></i>
-                      <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                      <span>Whether it's routine vaccines or urgent outreach, this system helps us manage all vaccination needs with reliability and ease.</span>
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
@@ -735,8 +708,8 @@
                     <div class="d-flex">
                       <img src="{{ asset('assets/img/testimonials/testimonials-2.jpg') }}" class="testimonial-img flex-shrink-0" alt="">
                       <div>
-                        <h3>Sara Wilsson</h3>
-                        <h4>Designer</h4>
+                        <h3>Dr. Amina Tariq</h3>
+                        <h4>Pediatric Consultant</h4>
                         <div class="stars">
                           <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </div>
@@ -744,7 +717,7 @@
                     </div>
                     <p>
                       <i class="bi bi-quote quote-icon-left"></i>
-                      <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                      <span>This system has significantly improved our appointment handling and record-keeping. Parents now come well-informed, and we spend less time on paperwork.</span>
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
@@ -755,8 +728,8 @@
                     <div class="d-flex">
                       <img src="{{ asset('assets/img/testimonials/testimonials-3.jp') }}g" class="testimonial-img flex-shrink-0" alt="">
                       <div>
-                        <h3>Jena Karlis</h3>
-                        <h4>Store Owner</h4>
+                        <h3>Samina Javed</h3>
+                        <h4>Mother of 2</h4>
                         <div class="stars">
                           <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </div>
@@ -764,39 +737,20 @@
                     </div>
                     <p>
                       <i class="bi bi-quote quote-icon-left"></i>
-                      <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                      <span>As a working mom, getting timely reminders and having my kids’ vaccine history in one place is a lifesaver. Highly recommended for all parents!</span>
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
                 </div><!-- End testimonial item -->
 
-                <div class="swiper-slide">
-                  <div class="testimonial-item">
-                    <div class="d-flex">
-                      <img src="{{ asset('assets/img/testimonials/testimonials-4.jp') }}g" class="testimonial-img flex-shrink-0" alt="">
-                      <div>
-                        <h3>Matt Brandon</h3>
-                        <h4>Freelancer</h4>
-                        <div class="stars">
-                          <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <p>
-                      <i class="bi bi-quote quote-icon-left"></i>
-                      <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                      <i class="bi bi-quote quote-icon-right"></i>
-                    </p>
-                  </div>
-                </div><!-- End testimonial item -->
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
                     <div class="d-flex">
                       <img src="{{ asset('assets/img/testimonials/testimonials-5.jpg') }}" class="testimonial-img flex-shrink-0" alt="">
                       <div>
-                        <h3>John Larson</h3>
-                        <h4>Entrepreneur</h4>
+                        <h3>Hospital Admin</h3>
+                        <h4>City Medical Center</h4>
                         <div class="stars">
                           <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                         </div>
@@ -804,7 +758,7 @@
                     </div>
                     <p>
                       <i class="bi bi-quote quote-icon-left"></i>
-                      <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                      <span>We were able to reduce missed appointments by 40% thanks to SMS/email reminders. The dashboard is intuitive, and our staff adapted quickly.</span>
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
@@ -828,7 +782,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Gallery</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>A glimpse into our vaccination drives, healthcare staff, and community outreach programs.</p>
       </div><!-- End Section Title -->
 
       <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
@@ -911,7 +865,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Have questions or need support? Reach out to our team for assistance with appointments, records, or system access.</p>
       </div><!-- End Section Title -->
 
       <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
