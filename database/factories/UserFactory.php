@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '1234',
             // 'role' => 'hospital', 
-            'is_approved' => false,
+            'is_approved' => $this->faker->boolean(70),
         ];
     }
 
