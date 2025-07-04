@@ -16,9 +16,13 @@ class VaccineRequestSeeder extends Seeder
      */
     public function run(): void
     {
-        $childs = Children::inRandomOrder()->take(5)->get();
+        $childs = Children::withWhereHas('parent',function($query){
+            $query->where('is_approved',true);
+        })->inRandomOrder()->take(5)->get();
         $vaccines = Vaccine::where('available', true)->get();
-        $hospitals = Hospital::all();
+        $hospitals = Hospital::withWhereHas('user', function ($query) {
+            $query->where('is_approved', true);
+        })->get();
 
         foreach ($childs as $child) {
             VaccineRequest::create([

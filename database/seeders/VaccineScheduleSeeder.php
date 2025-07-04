@@ -30,8 +30,8 @@ class VaccineScheduleSeeder extends Seeder
                 'hospital_id' => $hospital,
                 // 'hospital_id' => 8,
                 'date' => now()->addDays(rand(1,30)),
-                // 'status' => rand(0,1) ? 'completed' : 'pending',
-                'status' => 'pending',
+                'status' => rand(0,1) ? 'completed' : 'pending',
+                // 'status' => 'pending',
             ]);
         }
     }
