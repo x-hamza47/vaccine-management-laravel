@@ -5,21 +5,51 @@
 
     RewriteEngine On
 
-    # Handle Authorization Header
+    # 1. Remove www → non-www
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+    # 2. Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # 3. Handle Authorization Header (Sanctum / API)
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Handle X-XSRF-Token Header
+    # 4. Handle X-XSRF-Token Header
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+    # 5. Remove Trailing Slashes (if not a folder)
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteCond %{REQUEST_URI} (.+)/$
+    # RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # 6. Block sensitive directories
+    RewriteRule ^vendor/ - [F,L]
+    RewriteRule ^bootstrap/ - [F,L]
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^storage/logs/ - [F,L]
+    RewriteRule ^\.git/ - [F,L]
+
+    # 7. Send Requests To Front Controller
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
 </IfModule>
+
+# -----------------------------------------------
+# SECURITY: Block sensitive file types
+# -----------------------------------------------
+<FilesMatch "(?i)\.(env|env\.example|lock|yml|yaml|json|md|gitignore|gitattributes|editorconfig|php~|bak|old|dist|example)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block sensitive filenames directly
+<FilesMatch "(?i)^(artisan|composer\.json|composer\.lock|phpunit\.xml|server\.php|webpack\.mix\.js|package\.json|package-lock\.json)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

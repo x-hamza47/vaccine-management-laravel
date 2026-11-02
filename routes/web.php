@@ -5,4 +5,4 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [FrontController::class, 'index'])->name('web.index');
-Route::post('/appointment', [FrontController::class, 'store'])->name('web.store');
+Route::post('/appointment', [FrontController::class, 'store'])->name('web.store')->middleware('auth');
