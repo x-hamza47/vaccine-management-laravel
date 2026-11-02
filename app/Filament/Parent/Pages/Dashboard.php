@@ -10,4 +10,10 @@ class Dashboard extends BaseDashboard
     {
         return 5;
     }
+    public function mount(): void
+    {
+        if (auth()->user()?->role !== 'parent') {
+            $this->redirect(url('/admin'));
+        }
+    }
 }

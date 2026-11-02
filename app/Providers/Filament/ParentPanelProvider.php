@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\Register;
 use App\Filament\Pages\EditProfile;
 use App\Filament\Parent\Pages\Dashboard;
 use App\Filament\Resources\VaccinationSchedules\VaccinationScheduleResource;
@@ -12,14 +13,14 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\View\PanelsRenderHook;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\View\PanelsRenderHook;
 use Illuminate\Support\HtmlString;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class ParentPanelProvider extends PanelProvider
 {
@@ -27,10 +28,11 @@ class ParentPanelProvider extends PanelProvider
     {
         return $panel
             ->id('parent')
-            ->path('parent')
+            ->path('dashboard')
             ->brandName('MediLab')
             ->font('Poppins')
             ->login()
+            ->registration(Register::class)
             ->colors([
                 'primary' => Color::hex('#2563EB'),
             ])
