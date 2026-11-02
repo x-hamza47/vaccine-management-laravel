@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use PhpParser\Node\Expr\FuncCall;
-use Illuminate\Support\Facades\Gate;
+// use PhpParser\Node\Expr\FuncCall;
+// use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,25 +13,31 @@ class Children extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'dob' => 'date',
+    ];
+
     public function parent()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function vaccinationSchedules()
     {
-        return $this->hasMany(VaccinationSchedule::class,'child_id');
+        return $this->hasMany(VaccinationSchedule::class, 'child_id');
     }
 
-    public function vaccineRequests(){
+    public function vaccineRequests()
+    {
         return $this->hasMany(VaccineRequest::class);
     }
 
-    public function vaccine(){
+    public function vaccine()
+    {
         return $this->hasOneThrough(
             Vaccine::class,
             VaccinationSchedule::class,
-            'child_id', 
+            'child_id',
             'id',
             'id',
             'vaccine_id'
@@ -39,7 +45,8 @@ class Children extends Model
     }
 
     // INfo: Query Scopes
-    public function scopeVisibleTo($query, $user){
+    public function scopeVisibleTo($query, $user)
+    {
         if ($user->can('parent-view')) {
             return $query->where('user_id', $user->id);
         }

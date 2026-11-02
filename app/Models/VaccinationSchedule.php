@@ -9,6 +9,9 @@ class VaccinationSchedule extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'date' => 'datetime',
+    ];
     public function vaccine()
     {
         return $this->belongsTo(Vaccine::class);
@@ -29,18 +32,20 @@ class VaccinationSchedule extends Model
         return Carbon::parse($this->date)->format('F j, Y');
     }
     // ! Query Scopes
-    public function scopeVisibleTo($query, $user){
-        if($user->can('hospital-view')){
+    public function scopeVisibleTo($query, $user)
+    {
+        if ($user->can('hospital-view')) {
             $hospital = $user->hospital->id;
             return $query->where('hospital_id', $hospital);
         }
-        if($user->can('parent-view')){
+        if ($user->can('parent-view')) {
             $childs = $user->children->pluck('id');
             return $query->whereIn('child_id', $childs);
         }
         return $query;
     }
-    public function scopeCompletedOrPast($query, $user){
+    public function scopeCompletedOrPast($query, $user)
+    {
         if ($user->can('parent-view') || $user->can('hospital-view')) {
             return $query->where(function ($q) {
                 $q->where('status', 'completed')
@@ -96,5 +101,4 @@ class VaccinationSchedule extends Model
 
         return $query;
     }
- 
 }

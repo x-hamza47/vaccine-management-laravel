@@ -20,5 +20,19 @@ class AdminSeeder extends Seeder
             'role' => 'admin',
             'is_approved' => true,
         ]);
+        User::create([
+            'name' => 'Hamza',
+            'email' => 'hamza@gmail.com',
+            'password' => 'hamza123',
+            'role' => 'hospital',
+            'is_approved' => true,
+        ]);
+        User::create([
+            'name' => 'Hamza',
+            'email' => 'hamza12@gmail.com',
+            'password' => 'hamza123',
+            'role' => 'parent',
+            'is_approved' => true,
+        ]);
     }
 }

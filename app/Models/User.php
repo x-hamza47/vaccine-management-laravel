@@ -6,8 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -48,11 +50,26 @@ class User extends Authenticatable
     }
 
     // ! Relations
-    public function hospital(){
+    public function hospital()
+    {
         return $this->hasOne(Hospital::class);
     }
 
-    public function children(){
+    public function children()
+    {
         return $this->hasMany(Children::class);
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if (! $this->is_approved) {
+            return false;
+        }
+
+        return match ($panel->getId()) {
+            'admin' => in_array($this->role, ['admin', 'hospital']),
+            'parent' => $this->role === 'parent',
+            default => false,
+        };
     }
 }
